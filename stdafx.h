@@ -48,6 +48,22 @@ enum eScene
 	sCredit
 };
 
+enum eChannel
+{ 
+	eBGMChannel, 
+	eChannel1, 
+	eChannel2 
+};
+
+enum eSound
+{
+	eMainMenuSound,
+	eMusicSelectSound,
+	eEffectMusic,
+	eGameMusic1,
+	eGameMusic2
+};
+
 
 #define WINDOW_DEFAULT_W	1024
 #define WINDOW_DEFAULT_H	768
