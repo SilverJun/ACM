@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\Engine">
+      <UniqueIdentifier>{ae03df51-1656-4d2b-91d7-95f2ec4df3b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine\Manager">
+      <UniqueIdentifier>{cd9825f8-69b9-411f-8cf5-7ddf8291d6db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\ACM">
+      <UniqueIdentifier>{be5e642c-c6b5-425e-aa7e-0b00a78de514}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine\lib">
+      <UniqueIdentifier>{7e42d521-972a-4597-a591-7a1512151d98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine\Object">
+      <UniqueIdentifier>{a50a7f27-40e2-45d1-a935-805fce037882}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\ACM\Scene">
+      <UniqueIdentifier>{fed26952-de16-4c1e-96cc-6a025da5b17f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\ACM\Object">
+      <UniqueIdentifier>{ee26d903-09d4-4802-b8de-4df3b2087ee0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawManager.h">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="TextManager.h">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeManager.h">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>소스 파일\Engine\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>소스 파일\Engine\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Director.h">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>소스 파일\Engine\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="han2unicode.h">
+      <Filter>소스 파일\Engine\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene_Credit.h">
+      <Filter>소스 파일\ACM\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene_Game.h">
+      <Filter>소스 파일\ACM\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene_MainMenu.h">
+      <Filter>소스 파일\ACM\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene_Rule.h">
+      <Filter>소스 파일\ACM\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene_Score.h">
+      <Filter>소스 파일\ACM\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite_Player.h">
+      <Filter>소스 파일\ACM\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite_Note.h">
+      <Filter>소스 파일\ACM\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite_SpawnNote.h">
+      <Filter>소스 파일\ACM\Object</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Avoid_Color_Music.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawManager.cpp">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="EventManager.cpp">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="TextManager.cpp">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeManager.cpp">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>소스 파일\Engine\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>소스 파일\Engine\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Director.cpp">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_Credit.cpp">
+      <Filter>소스 파일\ACM\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_Game.cpp">
+      <Filter>소스 파일\ACM\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_MainMenu.cpp">
+      <Filter>소스 파일\ACM\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_Rule.cpp">
+      <Filter>소스 파일\ACM\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_Score.cpp">
+      <Filter>소스 파일\ACM\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite_Player.cpp">
+      <Filter>소스 파일\ACM\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite_Note.cpp">
+      <Filter>소스 파일\ACM\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite_SpawnNote.cpp">
+      <Filter>소스 파일\ACM\Object</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+</Project>
