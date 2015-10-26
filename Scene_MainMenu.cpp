@@ -7,7 +7,7 @@
 #include "TextManager.h"
 
 
-CScene_MainMenu::CScene_MainMenu() : CScene(1)
+CScene_MainMenu::CScene_MainMenu() : CScene(sMainMenu)
 {
 	MenuBox[Start]	= { 100, 650, 0, 50 };
 	MenuBox[Rule]	= { 0, 650, 0, 50 };
@@ -56,7 +56,7 @@ void CScene_MainMenu::Update()
 	{
 		if (g_EventManager->CheckCollition_by_mouse(MenuBox[Start]))
 		{
-			g_SceneManager->SetScene(sGame);
+			g_SceneManager->SetScene(sMusicSelect);
 		}
 		else if (g_EventManager->CheckCollition_by_mouse(MenuBox[Rule]))
 		{

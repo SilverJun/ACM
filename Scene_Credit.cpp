@@ -6,7 +6,7 @@
 #include "SceneManager.h"
 
 
-CScene_Credit::CScene_Credit() : CScene(5)
+CScene_Credit::CScene_Credit() : CScene(sCredit)
 {
 	CreditBox[0] = { 100, 200, 0, 40 };
 	CreditBox[1] = { 100, 270, 0, 40 };

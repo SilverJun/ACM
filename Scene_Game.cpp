@@ -14,7 +14,7 @@
 
 enum {eSpawnNote, ePlayer};
 
-CScene_Game::CScene_Game() : CScene(2)
+CScene_Game::CScene_Game() : CScene(sGame)
 {
 	
 }
