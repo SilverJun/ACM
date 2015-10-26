@@ -9,7 +9,8 @@
 
 
 
-#define thisNote static_cast<CSprite_Note *>(*lNoteItor)
+#define thisNote	static_cast<CSprite_Note *>(*lNoteItor)
+
 
 enum {eSpawnNote, ePlayer};
 

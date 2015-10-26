@@ -102,6 +102,9 @@
     <ClInclude Include="Sprite_SpawnNote.h">
       <Filter>소스 파일\ACM\Object</Filter>
     </ClInclude>
+    <ClInclude Include="Scene_MusicSelect.h">
+      <Filter>소스 파일\ACM\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -160,6 +163,9 @@
     </ClCompile>
     <ClCompile Include="Sprite_SpawnNote.cpp">
       <Filter>소스 파일\ACM\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_MusicSelect.cpp">
+      <Filter>소스 파일\ACM\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

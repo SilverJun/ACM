@@ -89,6 +89,7 @@
     <ClInclude Include="Scene_Credit.h" />
     <ClInclude Include="Scene_Game.h" />
     <ClInclude Include="Scene_MainMenu.h" />
+    <ClInclude Include="Scene_MusicSelect.h" />
     <ClInclude Include="Scene_Rule.h" />
     <ClInclude Include="Scene_Score.h" />
     <ClInclude Include="Singleton.h" />
@@ -112,6 +113,7 @@
     <ClCompile Include="Scene_Credit.cpp" />
     <ClCompile Include="Scene_Game.cpp" />
     <ClCompile Include="Scene_MainMenu.cpp" />
+    <ClCompile Include="Scene_MusicSelect.cpp" />
     <ClCompile Include="Scene_Rule.cpp" />
     <ClCompile Include="Scene_Score.cpp" />
     <ClCompile Include="SoundManager.cpp" />

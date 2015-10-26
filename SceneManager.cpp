@@ -3,6 +3,7 @@
 #include "TimeManager.h"
 
 #include "Scene_MainMenu.h"
+#include "Scene_MusicSelect.h"
 #include "Scene_Game.h"
 #include "Scene_Rule.h"
 #include "Scene_Score.h"
@@ -36,6 +37,11 @@ void CSceneManager::SetScene(int idx)
 		std::cout << "메뉴신 동적할당" << std::endl;
 		thisScene = new CScene_MainMenu;
 		SceneIdx = sMainMenu;
+		break;
+
+	case sMusicSelect:
+		thisScene = new CScene_MusicSelect;
+		SceneIdx = sMusicSelect;
 		break;
 
 	case sGame:

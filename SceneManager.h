@@ -2,14 +2,6 @@
 #include "Singleton.h"
 #include "Scene.h"
 
-enum eScene{
-	sMainMenu = 1,
-	sGame,
-	sRule,
-	sScore,
-	sCredit
-};
-
 class CSceneManager : public Singleton<CSceneManager>
 {
 protected:

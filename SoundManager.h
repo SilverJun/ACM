@@ -1,7 +1,9 @@
 #pragma once
 #include "Singleton.h"
 
-//using namespace FMOD;
+using namespace FMOD;
+
+enum {eBGMChannel, eChannel1, eChannel2};
 
 class CSoundManager : public Singleton<CSoundManager>
 {
@@ -13,9 +15,9 @@ public:
 	void Update();
 	void Release();
 
-	//System *pSystem;
-	//Channel *pChannel[3];
-	//vector<Sound *> vSound;
+	System *pSystem;
+	Channel *pChannel[3];
+	vector<Sound *> vSound;
 };
 
 #define g_SoundManager CSoundManager::GetInstance()

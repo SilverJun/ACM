@@ -24,7 +24,7 @@
 
 #include <fmod.hpp>
 
-enum
+enum eKey
 {
 	Up,
 	Down,
@@ -37,6 +37,17 @@ enum
 	n3,
 	n4,
 };
+
+enum eScene
+{
+	sMainMenu = 1,
+	sMusicSelect,
+	sGame,
+	sRule,
+	sScore,
+	sCredit
+};
+
 
 #define WINDOW_DEFAULT_W	1024
 #define WINDOW_DEFAULT_H	768
