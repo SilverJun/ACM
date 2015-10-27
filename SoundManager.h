@@ -22,7 +22,7 @@ public:
 	void PauseSound(eChannel c, bool b);
 	void StopSound(eChannel c);
 	
-	char *path[5];
+	char path[5][100];
 
 	System *pSystem;
 	Channel *pChannel[3];

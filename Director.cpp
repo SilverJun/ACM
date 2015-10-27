@@ -10,8 +10,8 @@ void CDirector::Init()
 	GameDone = false;
 
 	g_TextManager->Init();
-	g_SceneManager->Init();
 	g_SoundManager->Init();
+	g_SceneManager->Init();
 	g_EventManager->Init();
 	g_DrawManager->Init();
 	//g_TimeManager->Init();
@@ -61,7 +61,12 @@ void CDirector::Release()
 
 void CDirector::GameLoop()
 {
-	
+	while (!GameDone)
+	{
+		Update();
+		Render();
+		g_TimeManager->FrameLock();
+	}
 }
 
 

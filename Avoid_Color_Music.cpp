@@ -10,12 +10,7 @@ int main(int argc, char* argv[])
 {
 	g_Director->Init();
 	
-	while (!g_Director->GameDone)
-	{
-		g_Director->Update();
-		g_Director->Render();
-		g_TimeManager->FrameLock();
-	}
+	g_Director->GameLoop();
 
 	g_Director->Release();
 
