@@ -6,25 +6,19 @@ public:
 	CTimeManager();
 	~CTimeManager();
 
-	clock_t vTime[6][2];
-	//clock_t CurTime;
-	//clock_t OldTime;
+	clock_t g_CurTime;
+
 	clock_t F_CurTime;
 	clock_t F_OldTime;
 
 	void FrameLock();
-	void CreateTime(int n);
-	clock_t *GetTime(int idx);
+	clock_t GetTime();
 
 	void Init();
-	void Init(int idx);
-	void Update(int idx);
-	void Release(int idx);
+	void Update();
+	void Release();
 
 };
 
 #define g_TimeManager CTimeManager::GetInstance()
-#define CurTime 1
-#define OldTime 2
-
 

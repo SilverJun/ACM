@@ -16,12 +16,16 @@ protected:
 	SDL_Rect SceneBGRect;
 	//======================
 
+	eScene sThisScene;
+
 public:
-	CScene(int n);
+	CScene(eScene n);
 	virtual ~CScene(void);
 
 	void SetSceneBGImage(char *);
 	CSprite* FindSpriteByName(char *);
+
+	eScene GetThisScene();
 
 	void addSprite(CSprite *);
 

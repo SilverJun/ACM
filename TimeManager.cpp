@@ -6,7 +6,7 @@ CTimeManager::CTimeManager()
 {
 	F_CurTime = clock();
 	F_OldTime = clock();
-	CreateTime(0);	//기본 타임
+	
 	
 }
 
@@ -30,32 +30,23 @@ void CTimeManager::FrameLock()
 	}
 }
 
-void CTimeManager::CreateTime(int n)
+
+clock_t CTimeManager::GetTime()
 {
-	//clock_t *newTime = new clock_t[2];
-	//newTime[OldTime] = clock();
-	//newTime[CurTime] = clock();
-	//vTime.push_back(newTime);
-	vTime[n][OldTime] = clock();
-	vTime[n][CurTime] = clock();
+	return g_CurTime;
 }
 
-clock_t *CTimeManager::GetTime(int idx)
+void CTimeManager::Init()
 {
-	return vTime[idx];
+	g_CurTime = clock();
 }
 
-void CTimeManager::Init(int idx)
+void CTimeManager::Update()
 {
-	vTime[idx][OldTime] = vTime[idx][CurTime];
+	g_CurTime = clock();
 }
 
-void CTimeManager::Update(int idx)
-{
-	vTime[idx][CurTime] = clock();
-}
-
-void CTimeManager::Release(int idx)
+void CTimeManager::Release()
 {
 }
 

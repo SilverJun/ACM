@@ -22,5 +22,8 @@ private:
 	list<CSprite_Note *> lNote;
 	list<CSprite_Note *>::iterator lNoteItor;
 	
+	clock_t SinkTime, OldTime, CurTime;
+
+	//fstream SinkFile;
 };
 

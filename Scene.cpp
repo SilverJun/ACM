@@ -2,15 +2,15 @@
 #include "Scene.h"
 #include "TimeManager.h"
 
-CScene::CScene(int n)
+CScene::CScene(eScene n)
 {
 	SceneBGRect.x = 0;
 	SceneBGRect.y = 0;
 	SceneBGRect.w = WINDOW_DEFAULT_W;
 	SceneBGRect.h = WINDOW_DEFAULT_H;
 	SetSceneBGImage("./bg2.png");
-	g_TimeManager->CreateTime(n);
 	nSprite = 0;
+	sThisScene = n;
 }
 
 
@@ -43,6 +43,12 @@ CSprite* CScene::FindSpriteByName(char * _name)
 			return vSprite[i];
 		}
 	}
+}
+
+
+eScene CScene::GetThisScene()
+{
+	return sThisScene;
 }
 
 

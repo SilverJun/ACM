@@ -23,7 +23,6 @@ CScene_Game::CScene_Game() : CScene(sGame)
 CScene_Game::~CScene_Game()
 {
 	Release();
-	g_TimeManager->Init(2);
 }
 
 
@@ -31,7 +30,17 @@ void CScene_Game::Init()
 {
 	addSprite(new CSprite_SpawnNote());
 	addSprite(new CSprite_Player());
-	SDL_ShowCursor(0);
+	//SDL_ShowCursor(0);
+
+
+	g_TimeManager->Update();
+
+
+	OldTime = g_TimeManager->GetTime();
+	CurTime = clock() - OldTime;
+	//파일 불러오기
+
+
 }
 
 
@@ -70,13 +79,16 @@ void CScene_Game::Update()
 		vSprite[ePlayer]->SetSpriteY(g_EventManager->g_Event.motion.y - 14);
 	}
 
-	if (g_EventManager->KeyProsess[Space] == true)
-	{
-		lNote.push_back(new CSprite_Note(90.f, 2.f, 10, 0));
-		lNote.push_back(new CSprite_Note(180.f, 2.f, 10, 0));
-		lNote.push_back(new CSprite_Note(270.f, 2.f, 10, 0));
-		lNote.push_back(new CSprite_Note(360.f, 2.f, 10, 0));
-	}
+	//if (g_EventManager->KeyProsess[Space] == true)
+	//{
+	//	lNote.push_back(new CSprite_Note(90.f, 2.f, 10, 0));
+	//	lNote.push_back(new CSprite_Note(180.f, 2.f, 10, 0));
+	//	lNote.push_back(new CSprite_Note(270.f, 2.f, 10, 0));
+	//	lNote.push_back(new CSprite_Note(360.f, 2.f, 10, 0));
+	//}
+
+	CurTime = clock() - OldTime;
+
 }
 
 
@@ -112,7 +124,7 @@ void CScene_Game::Release()
 		delete vSprite[i];
 	}*/
 	
-	SDL_ShowCursor(1);
+	//SDL_ShowCursor(1);
 }
 
 
