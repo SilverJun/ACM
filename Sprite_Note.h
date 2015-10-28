@@ -3,14 +3,15 @@ class CSprite_Note : public CSprite
 {
 public:
 	CSprite_Note();
-	CSprite_Note(int Rotation);
+	CSprite_Note(float Rotation, float Rotation_Rate, int Speed, int Speed_Rate);
 	~CSprite_Note();
 
 	virtual void Update() override;
 
 private:
-	int x_variation;
-	int y_variation;
+	float Rotation_Rate;
+	int Speed;
+	int Speed_Rate;
 	//SDL_Point pos[4];
 
 };

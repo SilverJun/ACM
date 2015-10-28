@@ -30,14 +30,13 @@ void CEventManager::Update()
 	keystate = SDL_GetKeyboardState(NULL);
 	if (g_Event.type == SDL_KEYDOWN)
 	{
-		
 		switch (g_Event.key.keysym.sym)
 		{
 		case SDLK_F10:
-			g_SceneManager->SetScene(1);
+			g_SceneManager->SetScene(sMainMenu);
 			break;
 		case SDLK_F11:
-			g_SceneManager->SetScene(2);
+			g_SceneManager->SetScene(sGame);
 			break;
 
 		case SDLK_ESCAPE:
@@ -79,10 +78,10 @@ void CEventManager::Update()
 		//{
 		//	KeyProsess[Right] = true;
 		//}
-		//if (g_EventKey == SDLK_SPACE)
-		//{
-		//	KeyProsess[Space] = true;
-		//}
+		if (g_EventKey == SDLK_SPACE)
+		{
+			KeyProsess[Space] = true;
+		}
 
 		//if (keystate[SDL_SCANCODE_LEFT])
 		//{
@@ -109,7 +108,7 @@ void CEventManager::Update()
 	{
 		InitKeyProsess();
 	}
-	SDL_FlushEvents(1073741881, 1073742106);
+	//SDL_FlushEvents(1073741881, 1073742106);
 }
 
 
