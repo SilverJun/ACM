@@ -18,7 +18,7 @@ CScene_MainMenu::CScene_MainMenu() : CScene(sMainMenu)
 	strcpy(MenuString[Start], "게임시작");
 	strcpy(MenuString[Rule],	 "게임규칙");
 	strcpy(MenuString[Score], "점수");
-	strcpy(MenuString[Credit], "제작자, Alpha version 0.1");
+	strcpy(MenuString[Credit], "제작자");
 	strcpy(MenuString[Exit], "게임종료");
 
 	MenuBox[Start].w = (strlen(MenuString[Start]) - 1) * 25;

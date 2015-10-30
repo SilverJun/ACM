@@ -14,7 +14,7 @@ CScene_Credit::CScene_Credit() : CScene(sCredit)
 	CreditBox[3] = { 100, 370, 0, 40 };
 	CreditBox[4] = { 100, 420, 0, 40 };
 
-	strcpy(CreditString[0], "앱동 ACM 제작진");
+	strcpy(CreditString[0], "앱동 ACM 제작진, Alpha version 0.1");
 	strcpy(CreditString[1], "기획 : 차혁진");
 	strcpy(CreditString[2], "프로그래밍 : 장은준");
 	strcpy(CreditString[3], "그래픽 : 장호익");
