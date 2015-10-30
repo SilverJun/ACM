@@ -81,7 +81,7 @@ void CSceneManager::Init()
 void CSceneManager::Update()
 {
 	thisScene->Update();
-	g_TimeManager->Update(SceneIdx);
+	g_TimeManager->Update();
 }
 
 void CSceneManager::Render()
