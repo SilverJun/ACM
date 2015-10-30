@@ -42,9 +42,7 @@ void CScene_Game::Init()
 
 	g_SoundManager->PlaySound(eBGMChannel, eGameMusic1);
 
-
 	interval = 10;
-
 	Rotation = 0;
 	Rotation_Rate = 10;
 	Speed = 10;
@@ -98,7 +96,6 @@ void CScene_Game::Update()
 		lNote.push_back(new CSprite_Note(Rotation, 0.f, Speed, 0.f));
 		Rotation += Rotation_Rate;
 		Speed += Speed_Rate;
-		OldTime = CurTime;
 		SinkFile >> SinkTime;
 	}
 
@@ -138,6 +135,8 @@ void CScene_Game::Render()
 
 void CScene_Game::Release()
 {
+	g_SoundManager->StopSound(eBGMChannel);
+	g_SoundManager->DestroySound(eGameMusic1);
 	g_TextManager->DestroyTextAll();
 	/*for (int i = 0; i < vSprite.size(); i++)
 	{

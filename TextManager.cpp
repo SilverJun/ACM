@@ -54,7 +54,7 @@ void CTextManager::Init()
 		}
 	}
 
-	pTTF_Font = TTF_OpenFont("./Resource/font.ttf", point);
+	pTTF_Font = TTF_OpenFont("./Resource/korFont.ttf", point);
 }
 
 
