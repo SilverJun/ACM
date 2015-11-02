@@ -22,7 +22,7 @@ void CTimeManager::FrameLock()
 	{
 		F_CurTime = clock();
 
-		if (F_CurTime - F_OldTime > 10)
+		if (F_CurTime - F_OldTime > 20)
 		{
 			F_OldTime = F_CurTime;
 			break;

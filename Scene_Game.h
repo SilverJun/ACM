@@ -3,10 +3,18 @@
 
 #include "Sprite_Note.h"
 
+typedef struct _NoteData
+{
+	float Rotation, Rotation_Rate;
+	int Speed, Speed_Rate;
+	int interval;
+}NoteData;
+
 class CScene_Game : public CScene
 {
 public:
 	CScene_Game();
+	CScene_Game(eSound);
 	~CScene_Game();
 
 	void addNote(CSprite_Note *);
@@ -16,18 +24,34 @@ public:
 	virtual void Render() override;
 	virtual void Release() override;
 
-	void InitListNote();
+	float GetMouseRotation();
 
 private:
-	list<CSprite_Note *> lNote;
-	list<CSprite_Note *>::iterator lNoteItor;
-	
-	clock_t SinkTime, CurTime;
+	int Score;
 
-	float Rotation, Rotation_Rate;
-	int Speed, Speed_Rate;
-	int interval;
+	vector<CSprite_Note *> vNote;
+	
+	clock_t SinkTime, GameEndTime, CurTime, IntervalTime;
+	int NoteType;
+
+	int SprialWay;
+
+	NoteData CommonSink;
+
+	NoteData NormalSink;
+	NoteData FourWaySink;
+	NoteData SprialSink;
+
+	NoteData RandomSink;
+
+	bool bIsSprial;
+	bool bIsRandomNote;
 
 	fstream SinkFile;
+
+	char strScore[128];
+	SDL_Rect ScoreBox;
+
+	eSound ThisSong;
 };
 

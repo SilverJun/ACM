@@ -43,7 +43,9 @@ enum eScene
 {
 	sMainMenu = 1,
 	sMusicSelect,
-	sGame,
+	sGame_Song1,
+	sGame_Song2,
+	sGameEnd,
 	sRule,
 	sScore,
 	sCredit
@@ -61,8 +63,22 @@ enum eSound
 	eMainMenuSound,
 	eMusicSelectSound,
 	eEffectMusic,
-	eGameMusic1,
-	eGameMusic2
+	eGameMusic1,		//your addiction
+	eGameMusic2			//english listening
+};
+
+enum eNote
+{
+	note_Normal,
+	note_FourWayNormal,
+	note_Spiral_Left,
+	note_Spiral_Right
+};
+
+enum eSong
+{
+	eYour_Addiction,
+	eEnglish_Listening
 };
 
 

@@ -36,7 +36,7 @@ void CEventManager::Update()
 			g_SceneManager->SetScene(sMainMenu);
 			break;
 		case SDLK_F11:
-			g_SceneManager->SetScene(sGame);
+			g_SceneManager->SetScene(sMusicSelect);
 			break;
 
 		case SDLK_ESCAPE:
@@ -176,13 +176,13 @@ bool CEventManager::CheckCollition_by_Circle(CSprite *Circle, SDL_Rect mask)
 	float d;
 	
 	int i;
-	if (CheckCollition(*Circle->GetSpriteRect(),mask))
+	if (CheckCollition(*Circle->GetSpriteRect(), mask))
 	{
 		//상황1		-
 		for (i = 0; i + Pos[0].x < Pos[1].x; i++)
 		{
-			d = sqrtf(((CircleCenter.x - (Pos[0].x + i))*(CircleCenter.x - (Pos[0].x + i))) + ((CircleCenter.y - Pos[0].y)*(CircleCenter.y - Pos[0].y)));
-			if (d - r <= 0)
+			d = ((CircleCenter.x - (Pos[0].x + i))*(CircleCenter.x - (Pos[0].x + i))) + ((CircleCenter.y - Pos[0].y)*(CircleCenter.y - Pos[0].y));
+			if (d - (r * r) <= 0)
 			{
 				return true;
 			}
@@ -191,8 +191,8 @@ bool CEventManager::CheckCollition_by_Circle(CSprite *Circle, SDL_Rect mask)
 		//상황2		| I
 		for (i = 0; i + Pos[1].y < Pos[3].y; i++)
 		{
-			d = sqrtf(((CircleCenter.x - Pos[1].x)*(CircleCenter.x - Pos[1].x)) + ((CircleCenter.y - (Pos[1].y + i))*(CircleCenter.y - (Pos[1].y + i))));
-			if (d - r <= 0)
+			d = ((CircleCenter.x - Pos[1].x)*(CircleCenter.x - Pos[1].x)) + ((CircleCenter.y - (Pos[1].y + i))*(CircleCenter.y - (Pos[1].y + i)));
+			if (d - (r * r) <= 0)
 			{
 				return true;
 			}
@@ -200,8 +200,8 @@ bool CEventManager::CheckCollition_by_Circle(CSprite *Circle, SDL_Rect mask)
 		//상황3		_
 		for (i = 0; i + Pos[3].x < Pos[4].x; i++)
 		{
-			d = sqrtf(((CircleCenter.x - (Pos[3].x + i))*(CircleCenter.x - (Pos[3].x + i))) + ((CircleCenter.y - Pos[3].y)*(CircleCenter.y - Pos[3].y)));
-			if (d - r <= 0)
+			d = ((CircleCenter.x - (Pos[3].x + i))*(CircleCenter.x - (Pos[3].x + i))) + ((CircleCenter.y - Pos[3].y)*(CircleCenter.y - Pos[3].y));
+			if (d - (r * r) <= 0)
 			{
 				return true;
 			}
@@ -209,8 +209,8 @@ bool CEventManager::CheckCollition_by_Circle(CSprite *Circle, SDL_Rect mask)
 		//상황4		I |
 		for (i = 0; i + Pos[0].y < Pos[3].y; i++)
 		{
-			d = sqrtf(((CircleCenter.x - Pos[0].x)*(CircleCenter.x - Pos[0].x)) + ((CircleCenter.y - (Pos[0].y + i))*(CircleCenter.y - (Pos[0].y + i))));
-			if (d - r <= 0)
+			d = ((CircleCenter.x - Pos[0].x)*(CircleCenter.x - Pos[0].x)) + ((CircleCenter.y - (Pos[0].y + i))*(CircleCenter.y - (Pos[0].y + i)));
+			if (d - (r * r) <= 0)
 			{
 				return true;
 			}

@@ -8,7 +8,7 @@ CScene::CScene(eScene n)
 	SceneBGRect.y = 0;
 	SceneBGRect.w = WINDOW_DEFAULT_W;
 	SceneBGRect.h = WINDOW_DEFAULT_H;
-	SetSceneBGImage("./bg2.png");
+	SetSceneBGImage("./bg3.png");
 	nSprite = 0;
 	sThisScene = n;
 }

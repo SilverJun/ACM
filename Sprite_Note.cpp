@@ -17,9 +17,11 @@ CSprite_Note::CSprite_Note(float Rotation, float Rotation_Rate, int Speed, int S
 	SetSpriteRect((WINDOW_DEFAULT_W / 2 - 10), (WINDOW_DEFAULT_H / 2 - 10));
 	SetSpriteImage("./Resource/Note.png");
 	SetSpriteRotation(Rotation);
+	SetSpriteCenter(10, 10);
 	this->Speed = Speed;
 	this->Speed_Rate = Speed_Rate;
 	this->Rotation_Rate = Rotation_Rate;
+	radian = rotation * (M_PI / 180);
 }
 
 
@@ -31,17 +33,11 @@ CSprite_Note::~CSprite_Note()
 
 void CSprite_Note::Update()
 {
-	float radian = rotation * (M_PI / 180);
-
 	SpriteRect.x += Speed * cosf(radian);
 	SpriteRect.y += Speed * sinf(radian);
 
-	//center.x = SpriteRect.x + SpriteRect.w / 2;
-	//center.y = SpriteRect.y + SpriteRect.h / 2;
-
-
-	rotation += Rotation_Rate;
-	Speed += Speed_Rate;
+	//rotation += Rotation_Rate;
+	//Speed += Speed_Rate;
 }
 
 

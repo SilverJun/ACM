@@ -44,9 +44,14 @@ void CSceneManager::SetScene(int idx)
 		SceneIdx = sMusicSelect;
 		break;
 
-	case sGame:
-		thisScene = new CScene_Game;
-		SceneIdx = sGame;
+	case sGame_Song1:
+		thisScene = new CScene_Game(eGameMusic1);
+		SceneIdx = sGame_Song1;
+		break;
+
+	case sGame_Song2:
+		thisScene = new CScene_Game(eGameMusic2);
+		SceneIdx = sGame_Song2;
 		break;
 
 	case sRule:

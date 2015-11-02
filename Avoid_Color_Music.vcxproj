@@ -27,7 +27,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -46,6 +46,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>C:\SDL2_image-2.0.0\include;C:\SDL2_ttf-2.0.12\include;C:\SDL2-2.0.3\include;C:\FMOD Programmers API Windows\api\inc;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\SDL2_image-2.0.0\lib\x86;C:\SDL2_ttf-2.0.12\lib\x86;C:\SDL2-2.0.3\lib\x86;C:\FMOD Programmers API Windows\api\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -74,6 +76,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>SDL2.lib;SDL2_ttf.lib;SDL2_image.lib;fmodex_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -88,6 +91,7 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Scene_Credit.h" />
     <ClInclude Include="Scene_Game.h" />
+    <ClInclude Include="Scene_GameEnd.h" />
     <ClInclude Include="Scene_MainMenu.h" />
     <ClInclude Include="Scene_MusicSelect.h" />
     <ClInclude Include="Scene_Rule.h" />
@@ -112,6 +116,7 @@
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Scene_Credit.cpp" />
     <ClCompile Include="Scene_Game.cpp" />
+    <ClCompile Include="Scene_GameEnd.cpp" />
     <ClCompile Include="Scene_MainMenu.cpp" />
     <ClCompile Include="Scene_MusicSelect.cpp" />
     <ClCompile Include="Scene_Rule.cpp" />
