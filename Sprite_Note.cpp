@@ -9,13 +9,24 @@
 
 CSprite_Note::CSprite_Note() : CSprite("Note", 20, 20, 0, 0, 20, 20)
 {
-	SetSpriteImage("./Resource/Note.png");
+	//SetSpriteImage("./Resource/Note.png");
 }
 
 CSprite_Note::CSprite_Note(float Rotation, float Rotation_Rate, int Speed, int Speed_Rate) : CSprite("Note", 20, 20, 0, 0, 20, 20)
 {
 	SetSpriteRect((WINDOW_DEFAULT_W / 2 - 10), (WINDOW_DEFAULT_H / 2 - 10));
-	SetSpriteImage("./Resource/Note.png");
+
+	/*if (g_DrawManager->NoteTexture == nullptr)
+	{
+		SpriteImage = IMG_Load("./Resource/Note.png");
+
+		g_DrawManager->NoteTexture = SDL_CreateTextureFromSurface(g_DrawManager->pRenderer, SpriteImage);
+
+		SDL_FreeSurface(SpriteImage);
+	}*/
+
+	SpriteTexture = SDL_CreateTextureFromSurface(g_DrawManager->pRenderer, g_DrawManager->NoteSurface);
+	
 	SetSpriteRotation(Rotation);
 	SetSpriteCenter(10, 10);
 	this->Speed = Speed;

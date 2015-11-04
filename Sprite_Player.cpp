@@ -19,7 +19,7 @@ CSprite_Player::~CSprite_Player()
 
 void CSprite_Player::Update()
 {
-	SpriteMask.x = SpriteRect.x - 5;
-	SpriteMask.y = SpriteRect.y - 5;
+	SpriteMask.x = SpriteRect.x + 5;
+	SpriteMask.y = SpriteRect.y + 5;
 }
 

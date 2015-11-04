@@ -36,6 +36,7 @@ private:
 
 	int SprialWay;
 
+	//======================
 	NoteData CommonSink;
 
 	NoteData NormalSink;
@@ -43,6 +44,7 @@ private:
 	NoteData SprialSink;
 
 	NoteData RandomSink;
+	//======================
 
 	bool bIsSprial;
 	bool bIsRandomNote;

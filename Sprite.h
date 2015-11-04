@@ -7,7 +7,6 @@ class CSprite
 protected:
 	SDL_Rect SpriteRect;
 	SDL_Rect SpriteMask;
-	int x, y;
 	SDL_Point center;
 	
 	SpriteDirection SpriteDir;

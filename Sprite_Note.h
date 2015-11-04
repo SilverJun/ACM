@@ -14,5 +14,6 @@ private:
 	int Speed_Rate;
 	//SDL_Point pos[4];
 	float radian;
+
 };
 

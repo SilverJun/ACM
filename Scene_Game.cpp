@@ -85,7 +85,7 @@ void CScene_Game::Init()
 
 void CScene_Game::Update()
 {
-	GameEndTime;
+	//GameEndTime;
 
 	//CurTime = g_TimeManager->GetTime() - OldTime;
 	unsigned int time;
@@ -95,7 +95,7 @@ void CScene_Game::Update()
 	for (int i = 0; i < vNote.size(); )		//노트처리 반복문
 	{
 		vNote[i]->Update();
-		if (!g_EventManager->CheckCollition(*vNote[i]->GetSpriteRect(), SceneBGRect))
+		if (!g_EventManager->CheckCollition(*vNote[i]->GetSpriteRect(), SceneBGRect))		//스크린 밖으로 나가면 동적해제
 		{
 			delete vNote[i];
 			swap(vNote[i], vNote.back());
@@ -105,7 +105,7 @@ void CScene_Game::Update()
 			ScoreBox.w = (strlen(strScore) - 1) * 25;
 			g_TextManager->ModifyText(strScore, 0);
 		}
-		else if (g_EventManager->CheckCollition(*vSprite[ePlayer]->GetSpriteMask(),*vNote[i]->GetSpriteRect()))
+		else if (g_EventManager->CheckCollition(*vSprite[ePlayer]->GetSpriteMask(),*vNote[i]->GetSpriteRect()))		//플레이어와 맞으면 동적해제
 		{
 			delete vNote[i];
 			swap(vNote[i], vNote.back());
@@ -203,6 +203,7 @@ void CScene_Game::Update()
 			default:
 				break;
 			}
+			
 			IntervalTime = CurTime;
 		}
 		bIsRandomNote = false;
@@ -227,6 +228,11 @@ void CScene_Game::Update()
 
 void CScene_Game::Render()
 {
+	SDL_Rect temprt;
+	int x1, x2, x3, x4;
+	int y1, y2, y3, y4;
+
+	SDL_SetRenderDrawColor(g_DrawManager->pRenderer, 255, 0, 0, 255);
 	SDL_RenderCopy(g_DrawManager->pRenderer, SceneBGTexture, NULL, &SceneBGRect);
 
 	for (int i = 0; i < vNote.size(); i++)			//노트들 업데이트
@@ -234,6 +240,16 @@ void CScene_Game::Render()
 		if (vNote[i] != nullptr)
 		{
 			SDL_RenderCopyEx(g_DrawManager->pRenderer, vNote[i]->GetSpriteTexture(), NULL, vNote[i]->GetSpriteRect(), vNote[i]->GetSpriteRotation() + 90, vNote[i]->GetSpriteCenter(), *vNote[i]->GetSpriteFlip());
+#ifdef _DEBUG
+			temprt = *vNote[i]->GetSpriteRect();
+
+			x1 = temprt.x, x2 = temprt.w + temprt.x, x3 = temprt.x, x4 = temprt.w + temprt.x;
+			y1 = temprt.y, y2 = temprt.y, y3 = temprt.h + temprt.y, y4 = temprt.h + temprt.y;
+			SDL_RenderDrawLine(g_DrawManager->pRenderer, x1, y1, x2, y2);
+			SDL_RenderDrawLine(g_DrawManager->pRenderer, x1, y1, x3, y3);
+			SDL_RenderDrawLine(g_DrawManager->pRenderer, x2, y2, x4, y4);
+			SDL_RenderDrawLine(g_DrawManager->pRenderer, x3, y3, x4, y4);
+#endif
 		}
 	}
 
@@ -242,6 +258,16 @@ void CScene_Game::Render()
 		if (vSprite[i] != nullptr)
 		{
 			SDL_RenderCopyEx(g_DrawManager->pRenderer, vSprite[i]->GetSpriteTexture(), NULL, vSprite[i]->GetSpriteRect(), vSprite[i]->GetSpriteRotation(), vSprite[i]->GetSpriteCenter(), *vSprite[i]->GetSpriteFlip());
+#ifdef _DEBUG
+			temprt = *vSprite[ePlayer]->GetSpriteMask();
+
+			x1 = temprt.x, x2 = temprt.w + temprt.x, x3 = temprt.x, x4 = temprt.w + temprt.x;
+			y1 = temprt.y, y2 = temprt.y, y3 = temprt.h + temprt.y, y4 = temprt.h + temprt.y;
+			SDL_RenderDrawLine(g_DrawManager->pRenderer, x1, y1, x2, y2);
+			SDL_RenderDrawLine(g_DrawManager->pRenderer, x1, y1, x3, y3);
+			SDL_RenderDrawLine(g_DrawManager->pRenderer, x2, y2, x4, y4);
+			SDL_RenderDrawLine(g_DrawManager->pRenderer, x3, y3, x4, y4);
+#endif
 		}
 	}
 }
@@ -269,18 +295,12 @@ void CScene_Game::addNote(CSprite_Note *newNote)
 
 float CScene_Game::GetMouseRotation()
 {
-	float x = WINDOW_DEFAULT_W / 2, y = WINDOW_DEFAULT_H /2;
-	float a = x + 1, b = y;
-	float m = g_EventManager->g_Event.motion.x, n = g_EventManager->g_Event.motion.y;
+	float offset_x = g_EventManager->g_Event.motion.x - WINDOW_DEFAULT_W / 2;
+	float offset_y = g_EventManager->g_Event.motion.y - WINDOW_DEFAULT_H / 2;
+	float radian = atan2(offset_y, offset_x);
 	
-	float r = acosf(((a - x)*(m - x) + (b - y)*(n - y)) / (sqrtf((m - x)*(m - x) + (n - y) * (n - y))) * (sqrtf((a - x)*(a - x) + (b - y) * (b - y))));
-	
-	if (n < y)
-	{
-		return 360.0f - ((180.0f * r) / M_PI);
-	}
-	else
-	{
-		return (180.0f * r) / M_PI;
-	}
+	//Shark.x += cos(radian) * 5.0f;	// * -sinf(radian) * 5.0f;
+	//Shark.y += -sin(radian) * 5.0f;	// * cosf(radian) * 5.0f;
+
+	return (180.0f * radian) / M_PI;
 }
