@@ -28,7 +28,7 @@ CSprite_Note::CSprite_Note(float Rotation, float Rotation_Rate, int Speed, int S
 	SpriteTexture = SDL_CreateTextureFromSurface(g_DrawManager->pRenderer, g_DrawManager->NoteSurface);
 	
 	SetSpriteRotation(Rotation);
-	SetSpriteCenter(10, 10);
+	SetSpriteCenter(20, 20);
 	this->Speed = Speed;
 	this->Speed_Rate = Speed_Rate;
 	this->Rotation_Rate = Rotation_Rate;

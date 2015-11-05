@@ -24,7 +24,7 @@ public:
 
 	bool CheckCollition(SDL_Rect mask1, SDL_Rect mask2);
 	bool CheckCollition_by_mouse(SDL_Rect mask);
-	bool CheckCollition_by_Circle(CSprite *Circle, SDL_Rect mask);
+	bool CheckCollition_by_Circle(CSprite *Circle1, CSprite *Circle2);
 
 };
 

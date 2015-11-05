@@ -105,7 +105,7 @@ void CScene_Game::Update()
 			ScoreBox.w = (strlen(strScore) - 1) * 25;
 			g_TextManager->ModifyText(strScore, 0);
 		}
-		else if (g_EventManager->CheckCollition(*vSprite[ePlayer]->GetSpriteMask(),*vNote[i]->GetSpriteRect()))		//플레이어와 맞으면 동적해제
+		else if (g_EventManager->CheckCollition_by_Circle(vSprite[ePlayer],vNote[i]))		//플레이어와 맞으면 동적해제
 		{
 			delete vNote[i];
 			swap(vNote[i], vNote.back());
@@ -239,7 +239,7 @@ void CScene_Game::Render()
 	{
 		if (vNote[i] != nullptr)
 		{
-			SDL_RenderCopyEx(g_DrawManager->pRenderer, vNote[i]->GetSpriteTexture(), NULL, vNote[i]->GetSpriteRect(), vNote[i]->GetSpriteRotation() + 90, vNote[i]->GetSpriteCenter(), *vNote[i]->GetSpriteFlip());
+			SDL_RenderCopyEx(g_DrawManager->pRenderer, vNote[i]->GetSpriteTexture(), NULL, vNote[i]->GetSpriteRect(), vNote[i]->GetSpriteRotation(), vNote[i]->GetSpriteCenter(), *vNote[i]->GetSpriteFlip());
 #ifdef _DEBUG
 			temprt = *vNote[i]->GetSpriteRect();
 
