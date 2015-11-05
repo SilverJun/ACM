@@ -295,8 +295,8 @@ void CScene_Game::addNote(CSprite_Note *newNote)
 
 float CScene_Game::GetMouseRotation()
 {
-	float offset_x = g_EventManager->g_Event.motion.x - WINDOW_DEFAULT_W / 2;
-	float offset_y = g_EventManager->g_Event.motion.y - WINDOW_DEFAULT_H / 2;
+	float offset_x = g_EventManager->g_Event.motion.x - (WINDOW_DEFAULT_W / 2 - 20);
+	float offset_y = g_EventManager->g_Event.motion.y - (WINDOW_DEFAULT_H / 2 - 20);
 	float radian = atan2(offset_y, offset_x);
 	
 	//Shark.x += cos(radian) * 5.0f;	// * -sinf(radian) * 5.0f;

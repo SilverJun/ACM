@@ -16,15 +16,6 @@ CSprite_Note::CSprite_Note(float Rotation, float Rotation_Rate, int Speed, int S
 {
 	SetSpriteRect((WINDOW_DEFAULT_W / 2 - 10), (WINDOW_DEFAULT_H / 2 - 10));
 
-	/*if (g_DrawManager->NoteTexture == nullptr)
-	{
-		SpriteImage = IMG_Load("./Resource/Note.png");
-
-		g_DrawManager->NoteTexture = SDL_CreateTextureFromSurface(g_DrawManager->pRenderer, SpriteImage);
-
-		SDL_FreeSurface(SpriteImage);
-	}*/
-
 	SpriteTexture = SDL_CreateTextureFromSurface(g_DrawManager->pRenderer, g_DrawManager->NoteSurface);
 	
 	SetSpriteRotation(Rotation);
