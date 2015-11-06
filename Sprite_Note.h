@@ -1,4 +1,8 @@
 #pragma once
+
+
+
+
 class CSprite_Note : public CSprite
 {
 public:

@@ -36,7 +36,7 @@ private:
 
 	int SprialWay;
 
-	//======================
+	//======SinkData===========
 	NoteData CommonSink;
 
 	NoteData NormalSink;
@@ -44,12 +44,13 @@ private:
 	NoteData SprialSink;
 
 	NoteData RandomSink;
-	//======================
+	//=========================
 
 	bool bIsSprial;
 	bool bIsRandomNote;
+	bool bIsGameEnd;
 
-	fstream SinkFile;
+	fstream SinkFile, ScoreFile;
 
 	char strScore[128];
 	SDL_Rect ScoreBox;

@@ -8,6 +8,7 @@
 #include "Scene_Rule.h"
 #include "Scene_Score.h"
 #include "Scene_Credit.h"
+#include "Scene_GameEnd.h"
 
 
 CSceneManager::CSceneManager(void)
@@ -66,6 +67,11 @@ void CSceneManager::SetScene(int idx)
 
 	case sCredit:
 		thisScene = new CScene_Credit;
+		SceneIdx = sCredit;
+		break;
+
+	case sGameEnd:
+		thisScene = new CScene_GameEnd;
 		SceneIdx = sCredit;
 		break;
 

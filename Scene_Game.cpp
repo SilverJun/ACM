@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "SceneManager.h"
 #include "TimeManager.h"
 #include "EventManager.h"
 #include "TextManager.h"
@@ -30,6 +31,8 @@ CScene_Game::CScene_Game(eSound Song) : CScene(sThisScene)
 	default:
 		break;
 	}
+	
+
 }
 
 
@@ -73,6 +76,7 @@ void CScene_Game::Init()
 	
 	bIsSprial = false;
 	bIsRandomNote = false;
+	bIsGameEnd = false;
 
 	Score = 0;
 	ScoreBox = { 20, 20, 0, 50 };
@@ -218,10 +222,17 @@ void CScene_Game::Update()
 			vNote.push_back(new CSprite_Note(RandomSink.Rotation, 0.f, RandomSink.Speed, 0.f));
 		}
 	}
-	
-	if (g_EventManager->KeyProsess[Space] == true)
+
+	if (CurTime >= GameEndTime)
 	{
-		bIsRandomNote = !bIsRandomNote;
+		bIsGameEnd = true;
+	}
+
+	if (vNote.size() == 0 && bIsGameEnd)
+	{
+		ScoreFile.open("./Data/Score.txt",ios::app);
+		ScoreFile << " " << Score;
+		g_SceneManager->SetScene(sGameEnd);
 	}
 }
 
@@ -278,6 +289,9 @@ void CScene_Game::Release()
 	g_SoundManager->StopSound(eChannel1);
 	g_SoundManager->DestroySound(ThisSong);
 	g_TextManager->DestroyTextAll();
+	ScoreFile.close();
+	SinkFile.close();
+
 	/*for (int i = 0; i < vSprite.size(); i++)
 	{
 		delete vSprite[i];
