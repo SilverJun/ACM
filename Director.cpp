@@ -24,9 +24,13 @@ void CDirector::Update()
 	//cout << "Director Update()" << endl;
 	g_EventManager->Update();
 	g_SceneManager->Update();
+	g_EventManager->Update();
 	g_TextManager->Update();
+	g_EventManager->Update();
 	g_SoundManager->Update();
+	g_EventManager->Update();
 	g_DrawManager->Update();
+	g_EventManager->Update();
 }
 
 

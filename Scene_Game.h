@@ -31,7 +31,9 @@ private:
 
 	vector<CSprite_Note *> vNote;
 	
-	clock_t SinkTime, GameEndTime, CurTime, IntervalTime;
+	clock_t SinkTime, GameEndTime, CurTime, IntervalTime, ScoreTime, xScoreTime;
+	float xScore;
+	//스코어 배율. 1~2까지. 5초간 0.1씩 올라감, 피격시 -0.2
 	int NoteType;
 
 	int SprialWay;

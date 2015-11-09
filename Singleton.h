@@ -41,7 +41,6 @@ public:
 		call_once(m_onceFlag, [] 
 			{
 				m_pInstance.reset(new T);
-				std::cout <<"싱글턴 동적할당" << std::endl;
 			}
 		);
 		return m_pInstance.get();

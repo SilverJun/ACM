@@ -55,6 +55,10 @@ void CScene_Game::Init()
 	g_SoundManager->pSound[ThisSong]->getLength(&time, FMOD_TIMEUNIT_MS);
 	GameEndTime = time;
 
+	ScoreTime = 100;
+	xScoreTime = 5000;
+	xScore = 1.0f;
+
 	SinkFile >> SinkTime >> NoteType >> CommonSink.Rotation >> CommonSink.Speed;
 
 	g_TimeManager->Update();
@@ -104,20 +108,13 @@ void CScene_Game::Update()
 			delete vNote[i];
 			swap(vNote[i], vNote.back());
 			vNote.pop_back();
-			Score += 100;
-			sprintf(strScore, "점수 %d", Score);
-			ScoreBox.w = (strlen(strScore) - 1) * 25;
-			g_TextManager->ModifyText(strScore, 0);
 		}
 		else if (g_EventManager->CheckCollition_by_Circle(vSprite[ePlayer],vNote[i]))		//플레이어와 맞으면 동적해제
 		{
 			delete vNote[i];
 			swap(vNote[i], vNote.back());
 			vNote.pop_back();
-			Score -= 500;
-			sprintf(strScore, "점수 %d", Score);
-			ScoreBox.w = (strlen(strScore) - 1) * 25;
-			g_TextManager->ModifyText(strScore, 0);
+			xScore = 1.0f;
 		}
 		else
 		{
@@ -125,15 +122,17 @@ void CScene_Game::Update()
 		}
 	}
 	
+	if (!g_EventManager->CheckCollition_by_mouse(*vSprite[eSpawnNote]->GetSpriteRect()))		//플레이어 스프라이트가 가운데 스폰노트 스프라이트를 뚫지 않도록 셋팅
+	{
+		if (g_EventManager->CheckCollition_by_mouse(SceneBGRect))
+		{
+			vSprite[ePlayer]->SetSpriteX(g_EventManager->g_Event.motion.x - 14);
+			vSprite[ePlayer]->SetSpriteY(g_EventManager->g_Event.motion.y - 14);
+		}
+	}
 
 	vSprite[eSpawnNote]->Update();
 	vSprite[ePlayer]->Update();
-	
-	if (!g_EventManager->CheckCollition_by_mouse(*vSprite[eSpawnNote]->GetSpriteRect()))		//플레이어 스프라이트가 가운데 스폰노트 스프라이트를 뚫지 않도록 셋팅
-	{
-		vSprite[ePlayer]->SetSpriteX(g_EventManager->g_Event.motion.x - 14);
-		vSprite[ePlayer]->SetSpriteY(g_EventManager->g_Event.motion.y - 14);
-	}
 
 	if (CurTime > SinkTime)		//노트가 나와야 하는 타이밍
 	{
@@ -145,7 +144,7 @@ void CScene_Game::Update()
 			NormalSink.Rotation = GetMouseRotation();
 			NormalSink.Speed = CommonSink.Speed;
 
-			vNote.push_back(new CSprite_Note(NormalSink.Rotation, 0.f, NormalSink.Speed, 0.f));
+			vNote.push_back(new CSprite_Note(note_Normal, NormalSink.Rotation, 0.f, NormalSink.Speed, 0.f));
 			bIsSprial = false;
 			bIsRandomNote = true;
 			break;
@@ -155,10 +154,10 @@ void CScene_Game::Update()
 			FourWaySink.Rotation = CommonSink.Rotation;
 			FourWaySink.Speed = CommonSink.Speed;
 
-			vNote.push_back(new CSprite_Note(FourWaySink.Rotation, 0.f, FourWaySink.Speed, 0.f));
-			vNote.push_back(new CSprite_Note(FourWaySink.Rotation + 90, 0.f, FourWaySink.Speed, 0.f));
-			vNote.push_back(new CSprite_Note(FourWaySink.Rotation + 180, 0.f, FourWaySink.Speed, 0.f));
-			vNote.push_back(new CSprite_Note(FourWaySink.Rotation + 270, 0.f, FourWaySink.Speed, 0.f));
+			vNote.push_back(new CSprite_Note(note_FourWayNormal, FourWaySink.Rotation, 0.f, FourWaySink.Speed, 0.f));
+			vNote.push_back(new CSprite_Note(note_FourWayNormal, FourWaySink.Rotation + 90, 0.f, FourWaySink.Speed, 0.f));
+			vNote.push_back(new CSprite_Note(note_FourWayNormal, FourWaySink.Rotation + 180, 0.f, FourWaySink.Speed, 0.f));
+			vNote.push_back(new CSprite_Note(note_FourWayNormal, FourWaySink.Rotation + 270, 0.f, FourWaySink.Speed, 0.f));
 
 			FourWaySink.Rotation += 45;
 
@@ -193,13 +192,13 @@ void CScene_Game::Update()
 			switch (SprialWay)
 			{
 			case note_Spiral_Left:
-				vNote.push_back(new CSprite_Note(SprialSink.Rotation, 0.f, SprialSink.Speed, 0.f));
+				vNote.push_back(new CSprite_Note(note_Spiral_Left, SprialSink.Rotation, 0.f, SprialSink.Speed, 0.f));
 				SprialSink.Rotation -= CommonSink.Rotation_Rate;
 				SprialSink.Speed += CommonSink.Speed_Rate;
 				break;
 
 			case note_Spiral_Right:
-				vNote.push_back(new CSprite_Note(SprialSink.Rotation, 0.f, SprialSink.Speed, 0.f));
+				vNote.push_back(new CSprite_Note(note_Spiral_Right, SprialSink.Rotation, 0.f, SprialSink.Speed, 0.f));
 				SprialSink.Rotation += CommonSink.Rotation_Rate;
 				SprialSink.Speed += CommonSink.Speed_Rate;
 				break;
@@ -219,8 +218,27 @@ void CScene_Game::Update()
 		{
 			RandomSink.Rotation = rand() % 360;
 			RandomSink.Speed = 7;
-			vNote.push_back(new CSprite_Note(RandomSink.Rotation, 0.f, RandomSink.Speed, 0.f));
+			vNote.push_back(new CSprite_Note(note_Random, RandomSink.Rotation, 0.f, RandomSink.Speed, 0.f));
 		}
+	}
+
+	if (CurTime >= ScoreTime)
+	{
+		ScoreTime += 100;
+
+		Score += 100 * xScore;
+		sprintf(strScore, "점수 %d", Score);
+		ScoreBox.w = (strlen(strScore) - 1) * 25;
+		g_TextManager->ModifyText(strScore, 0);
+	}
+
+	if (CurTime >= xScoreTime)
+	{
+		if (xScore < 2.0f)
+		{
+			xScore += 0.1f;
+		}
+		xScoreTime += 5000;
 	}
 
 	if (CurTime >= GameEndTime)
@@ -234,6 +252,7 @@ void CScene_Game::Update()
 		ScoreFile << " " << Score;
 		g_SceneManager->SetScene(sGameEnd);
 	}
+
 }
 
 
@@ -243,7 +262,7 @@ void CScene_Game::Render()
 	int x1, x2, x3, x4;
 	int y1, y2, y3, y4;
 
-	SDL_SetRenderDrawColor(g_DrawManager->pRenderer, 255, 0, 0, 255);
+	
 	SDL_RenderCopy(g_DrawManager->pRenderer, SceneBGTexture, NULL, &SceneBGRect);
 
 	for (int i = 0; i < vNote.size(); i++)			//노트들 업데이트
@@ -252,6 +271,7 @@ void CScene_Game::Render()
 		{
 			SDL_RenderCopyEx(g_DrawManager->pRenderer, vNote[i]->GetSpriteTexture(), NULL, vNote[i]->GetSpriteRect(), vNote[i]->GetSpriteRotation(), vNote[i]->GetSpriteCenter(), *vNote[i]->GetSpriteFlip());
 #ifdef _DEBUG
+			SDL_SetRenderDrawColor(g_DrawManager->pRenderer, 255, 0, 0, 255);
 			temprt = *vNote[i]->GetSpriteRect();
 
 			x1 = temprt.x, x2 = temprt.w + temprt.x, x3 = temprt.x, x4 = temprt.w + temprt.x;
@@ -260,7 +280,12 @@ void CScene_Game::Render()
 			SDL_RenderDrawLine(g_DrawManager->pRenderer, x1, y1, x3, y3);
 			SDL_RenderDrawLine(g_DrawManager->pRenderer, x2, y2, x4, y4);
 			SDL_RenderDrawLine(g_DrawManager->pRenderer, x3, y3, x4, y4);
+
+			SDL_SetRenderDrawColor(g_DrawManager->pRenderer, 0, 0, 255, 255);
+			g_EventManager->CheckCollition_by_Circle(vSprite[ePlayer], vNote[i]);
 #endif
+			
+			
 		}
 	}
 
@@ -281,6 +306,10 @@ void CScene_Game::Render()
 #endif
 		}
 	}
+
+	
+
+
 }
 
 
@@ -309,8 +338,8 @@ void CScene_Game::addNote(CSprite_Note *newNote)
 
 float CScene_Game::GetMouseRotation()
 {
-	float offset_x = g_EventManager->g_Event.motion.x - (WINDOW_DEFAULT_W / 2 - 20);
-	float offset_y = g_EventManager->g_Event.motion.y - (WINDOW_DEFAULT_H / 2 - 20);
+	float offset_x = g_EventManager->g_Event.motion.x - (WINDOW_DEFAULT_W / 2 - 14);
+	float offset_y = g_EventManager->g_Event.motion.y - (WINDOW_DEFAULT_H / 2 - 14);
 	float radian = atan2(offset_y, offset_x);
 	
 	//Shark.x += cos(radian) * 5.0f;	// * -sinf(radian) * 5.0f;

@@ -73,7 +73,7 @@ enum eNote
 	note_FourWayNormal,
 	note_Spiral_Left,
 	note_Spiral_Right,
-	note_Following
+	note_Random
 };
 
 enum eSong

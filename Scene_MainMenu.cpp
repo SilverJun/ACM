@@ -9,6 +9,8 @@
 
 CScene_MainMenu::CScene_MainMenu() : CScene(sMainMenu)
 {
+	SetSceneBGImage("./Resource/MainMenu.png");
+
 	MenuBox[Start]	= { 100, 650, 0, 50 };
 	MenuBox[Rule]	= { 0, 650, 0, 50 };
 	MenuBox[Score] = { 0, 650, 0, 50 };

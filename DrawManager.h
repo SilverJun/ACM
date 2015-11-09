@@ -16,7 +16,9 @@ public:
 	SDL_Window *pWindow;
 	SDL_Renderer *pRenderer;
 	
-	SDL_Surface *NoteSurface;
+	SDL_Surface *NormalNoteSurface;
+	SDL_Surface *RandomNoteSurface;
+	SDL_Surface *SpiralNoteSurface;
 };
 
 #define g_DrawManager CDrawManager::GetInstance()

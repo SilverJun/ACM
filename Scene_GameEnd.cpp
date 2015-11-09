@@ -10,9 +10,11 @@
 
 CScene_GameEnd::CScene_GameEnd() : CScene(sGameEnd)
 {
-	ScoreFile.open("./Data/Score.txt");
+	ScoreFile.open("./Data/Score.txt", ios::in);
 
 	ScoreFile >> BestScore >> nowScore;
+
+	ScoreFile.close();
 
 	ScoreBox[0] = { 300, 120, 0, 60 };
 	ScoreBox[1] = { 100, 200, 0, 50 };
@@ -31,16 +33,17 @@ CScene_GameEnd::~CScene_GameEnd()
 void CScene_GameEnd::Init()
 {
 	sprintf(strScore[0], "*Result*");
-	sprintf(strScore[1], "점수 - %d", nowScore);
+	sprintf(strScore[1], "점수 %d", nowScore);
 	
 	if (nowScore > BestScore)
 	{
-		sprintf(strScore[2], "지난 최고점수 - %d", BestScore);
+		sprintf(strScore[2], "지난 최고점수 %d", BestScore);
 		sprintf(strScore[3], "최고기록 갱신!");
+		BestScore = nowScore;
 	}
 	else
 	{
-		sprintf(strScore[2], "최고점수 - %d", BestScore);
+		sprintf(strScore[2], "최고점수 %d", BestScore);
 		sprintf(strScore[3], "분발해야겠네요~");
 	}
 	sprintf(strScore[4], "메인메뉴로");
@@ -50,7 +53,7 @@ void CScene_GameEnd::Init()
 	ScoreBox[1].w = (strlen(strScore[1]) - 1) * 25;
 	ScoreBox[2].w = (strlen(strScore[2]) - 1) * 25;
 	ScoreBox[3].w = (strlen(strScore[3]) - 1) * 25;
-	ScoreBox[4].w = (strlen(strScore[4]) - 1) * 25;
+	ScoreBox[4].w = (strlen(strScore[4]) - 1) * 10;
 
 	for (int i = 0; i < 5; i++)
 	{
@@ -73,8 +76,8 @@ void CScene_GameEnd::Update()
 
 void CScene_GameEnd::Release()
 {
-	ScoreFile.clear();
-	ScoreFile << nowScore;
+	ScoreFile.open("./Data/Score.txt", ios::out);
+	ScoreFile << BestScore;
 	ScoreFile.close();
 	g_TextManager->DestroyTextAll();
 }

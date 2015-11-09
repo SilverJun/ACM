@@ -35,7 +35,6 @@ void CSceneManager::SetScene(int idx)
 		break;
 
 	case sMainMenu:
-		std::cout << "메뉴신 동적할당" << std::endl;
 		thisScene = new CScene_MainMenu;
 		SceneIdx = sMainMenu;
 		break;
