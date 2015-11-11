@@ -37,19 +37,19 @@ private:
 	//스코어 배율. 1~2까지. 5초간 0.1씩 올라감, 피격시 -0.2
 	int NoteType;
 
-	int SprialWay;
+	int SpiralWay;
 
 	//======SinkData===========
 	NoteData CommonSink;
 
 	NoteData NormalSink;
 	NoteData FourWaySink;
-	NoteData SprialSink;
+	NoteData SpiralSink;
 
 	NoteData RandomSink;
 	//=========================
 
-	bool bIsSprial;
+	bool bIsSpiral;
 	bool bIsRandomNote;
 	bool bIsGameEnd;
 

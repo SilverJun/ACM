@@ -27,6 +27,7 @@ void CSoundManager::Init()
 	FilePath.insert(unordered_map<eSong, char*>::value_type(eMainMenu, "./Resource/DJ_YOSHITAKA-VALLIS-NERIA.mp3"));
 	FilePath.insert(unordered_map<eSong, char*>::value_type(eYour_Addiction, "./Resource/Duelle_amp_CiRRO-Your_Addiction_Culture_Code_Remix.mp3"));
 	FilePath.insert(unordered_map<eSong, char*>::value_type(eEnglish_Listening, "./Resource/English_Listening_Type_B.mp3"));
+	FilePath.insert(unordered_map<eSong, char*>::value_type(eCircles, "./Resource/KDrew - Circles (Original Mix).mp3")); 
 }
 
 void CSoundManager::Update()

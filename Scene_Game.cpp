@@ -38,10 +38,10 @@ void CScene_Game::SetSong(eSong Song)
 		SinkFile.open("./Resource/English_Listening_Type_B.txt");
 		//SetSceneBGImage("./Resource/Duelle_amp_CiRRO-Your_Addiction_Culture_Code_Remix.jpg");
 		break;
-	//case eEnglish_Listening:
-	//	SinkFile.open("./Resource/English_Listening_Type_B.txt");
-	//	//SetSceneBGImage("./Resource/Duelle_amp_CiRRO-Your_Addiction_Culture_Code_Remix.jpg");
-	//	break;
+	case eCircles:
+		SinkFile.open("./Resource/KDrew - Circles (Original Mix).txt");
+		//SetSceneBGImage("./Resource/Duelle_amp_CiRRO-Your_Addiction_Culture_Code_Remix.jpg");
+		break;
 	default:
 		break;
 	}
@@ -79,12 +79,12 @@ void CScene_Game::Init()
 
 	NormalSink = CommonSink;
 	FourWaySink = CommonSink;
-	SprialSink = CommonSink;
+	SpiralSink = CommonSink;
 	RandomSink = CommonSink;
 
-	SprialWay = note_Spiral_Left;
+	SpiralWay = note_Spiral_Left;
 	
-	bIsSprial = false;
+	bIsSpiral = false;
 	bIsRandomNote = false;
 	bIsGameEnd = false;
 
@@ -154,7 +154,7 @@ void CScene_Game::Update()
 			NormalSink.Speed = CommonSink.Speed;
 
 			vNote.push_back(new CSprite_Note(note_Normal, NormalSink.Rotation, 0.f, NormalSink.Speed, 0.f));
-			bIsSprial = false;
+			bIsSpiral = false;
 			bIsRandomNote = true;
 			break;
 
@@ -170,21 +170,35 @@ void CScene_Game::Update()
 
 			FourWaySink.Rotation += 45;
 
-			bIsSprial = false;
+			bIsSpiral = false;
 			bIsRandomNote = true;
 			break;
 
 		case note_Spiral_Left:
-			SprialSink.Rotation = CommonSink.Rotation;
-			SprialSink.Speed = CommonSink.Speed;
-			SprialWay = note_Spiral_Left;
-			bIsSprial = true;
+			SpiralSink.Rotation = CommonSink.Rotation;
+			SpiralSink.Speed = CommonSink.Speed;
+			SpiralWay = note_Spiral_Left;
+			bIsSpiral = true;
 			break;
 		case note_Spiral_Right:
-			SprialSink.Rotation = CommonSink.Rotation;
-			SprialSink.Speed = CommonSink.Speed;
-			SprialWay = note_Spiral_Right;
-			bIsSprial = true;
+			SpiralSink.Rotation = CommonSink.Rotation;
+			SpiralSink.Speed = CommonSink.Speed;
+			SpiralWay = note_Spiral_Right;
+			bIsSpiral = true;
+			break;
+
+		case note_NormalSpiral:
+			SpiralSink.Rotation = CommonSink.Rotation;
+			SpiralSink.Speed = CommonSink.Speed;
+			SpiralWay = note_NormalSpiral;
+			bIsSpiral = true;
+			break;
+
+		case note_FourWaySpiral:
+			SpiralSink.Rotation = CommonSink.Rotation;
+			SpiralSink.Speed = CommonSink.Speed;
+			SpiralWay = note_FourWaySpiral;
+			bIsSpiral = true;
 			break;
 
 		default:
@@ -195,22 +209,37 @@ void CScene_Game::Update()
 	}
 
 
-	if (bIsSprial)		//´ÞÆØÀÌ³ëÆ®
+	if (bIsSpiral)		//´ÞÆØÀÌ³ëÆ®
 	{
 		if (CurTime - IntervalTime > 10)
 		{
-			switch (SprialWay)
+			switch (SpiralWay)
 			{
 			case note_Spiral_Left:
-				vNote.push_back(new CSprite_Note(note_Spiral_Left, SprialSink.Rotation, 0.f, SprialSink.Speed, 0.f));
-				SprialSink.Rotation -= CommonSink.Rotation_Rate;
-				SprialSink.Speed += CommonSink.Speed_Rate;
+				vNote.push_back(new CSprite_Note(note_Spiral_Left, SpiralSink.Rotation, 0.f, SpiralSink.Speed, 0.f));
+				SpiralSink.Rotation -= CommonSink.Rotation_Rate;
+				SpiralSink.Speed += CommonSink.Speed_Rate;
 				break;
 
 			case note_Spiral_Right:
-				vNote.push_back(new CSprite_Note(note_Spiral_Right, SprialSink.Rotation, 0.f, SprialSink.Speed, 0.f));
-				SprialSink.Rotation += CommonSink.Rotation_Rate;
-				SprialSink.Speed += CommonSink.Speed_Rate;
+				vNote.push_back(new CSprite_Note(note_Spiral_Right, SpiralSink.Rotation, 0.f, SpiralSink.Speed, 0.f));
+				SpiralSink.Rotation += CommonSink.Rotation_Rate;
+				SpiralSink.Speed += CommonSink.Speed_Rate;
+				break;
+
+			case note_NormalSpiral:
+				vNote.push_back(new CSprite_Note(note_Normal, SpiralSink.Rotation, 0.f, SpiralSink.Speed, 0.f));
+				SpiralSink.Rotation = GetMouseRotation();
+				SpiralSink.Speed += CommonSink.Speed_Rate;
+				break;
+
+			case note_FourWaySpiral:
+				vNote.push_back(new CSprite_Note(note_FourWayNormal, SpiralSink.Rotation, 0.f, SpiralSink.Speed, 0.f));
+				vNote.push_back(new CSprite_Note(note_FourWayNormal, SpiralSink.Rotation + 90, 0.f, SpiralSink.Speed, 0.f));
+				vNote.push_back(new CSprite_Note(note_FourWayNormal, SpiralSink.Rotation + 180, 0.f, SpiralSink.Speed, 0.f));
+				vNote.push_back(new CSprite_Note(note_FourWayNormal, SpiralSink.Rotation + 270, 0.f, SpiralSink.Speed, 0.f));
+
+				SpiralSink.Speed += CommonSink.Speed_Rate;
 				break;
 
 			default:

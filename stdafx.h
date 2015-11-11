@@ -75,14 +75,17 @@ enum eNote
 	note_FourWayNormal,
 	note_Spiral_Left,
 	note_Spiral_Right,
-	note_Random
+	note_Random,
+	note_NormalSpiral,
+	note_FourWaySpiral
 };
 
 enum eSong
 {
 	eMainMenu,
 	eYour_Addiction,
-	eEnglish_Listening
+	eEnglish_Listening,
+	eCircles
 };
 
 
