@@ -22,6 +22,9 @@ public:
 	int CreateText(char *, int x, int y, int w, int h);
 	int CreateText(char *, SDL_Rect *);
 	void ModifyText(char *, int idx);
+
+	void SetColor(Uint8 r, Uint8 g, Uint8 b);
+
 	void DestroyText(int idx);		
 	void DestroyTextAll();
 

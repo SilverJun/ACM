@@ -23,18 +23,10 @@ void CSoundManager::Init()
 	//eMainMenuSound,
 	//eMusicSelectSound,
 	//eEffectMusic,
-	//eGameMusic1,
-	//eGameMusic2
-
-	for (int i = 0; i < 5; i++)
-	{
-		pSound[i] = nullptr;
-	}
-
-	strcpy(path[eMainMenuSound], "./Resource/DJ_YOSHITAKA-VALLIS-NERIA.mp3");
-
-	strcpy(path[eGameMusic1], "./Resource/Duelle_amp_CiRRO-Your_Addiction_Culture_Code_Remix.mp3");
-	strcpy(path[eGameMusic2], "./Resource/English_Listening_Type_B.mp3");
+	//eGameTheme
+	FilePath.insert(unordered_map<eSong, char*>::value_type(eMainMenu, "./Resource/DJ_YOSHITAKA-VALLIS-NERIA.mp3"));
+	FilePath.insert(unordered_map<eSong, char*>::value_type(eYour_Addiction, "./Resource/Duelle_amp_CiRRO-Your_Addiction_Culture_Code_Remix.mp3"));
+	FilePath.insert(unordered_map<eSong, char*>::value_type(eEnglish_Listening, "./Resource/English_Listening_Type_B.mp3"));
 }
 
 void CSoundManager::Update()
@@ -45,42 +37,41 @@ void CSoundManager::Update()
 
 void CSoundManager::Release()
 {
+	FilePath.erase(FilePath.begin(), FilePath.end());
+	SongMap.erase(SongMap.begin(), SongMap.end());
+
 	for (int i = 0; i < 3; i++)
 	{
 		pChannel[i]->stop();
-	}
-
-	for (int i = 0; i < 5; i++)
-	{
-		if (pSound[i] != nullptr)
-		{
-			pSound[i]->release();
-		}
 	}
 	
 	pSystem->close();
 }
 
 
-void CSoundManager::MakeSound(eSound n)
+void CSoundManager::MakeSound(eSound n, eSong song)
 {
 	FMOD_RESULT f;
-	f = pSystem->createSound(path[n],FMOD_DEFAULT, NULL, &pSound[n]);
+	Sound *temp;
+	f = pSystem->createSound(FilePath[song], FMOD_DEFAULT, NULL, &temp);
 	f;
+
+	SongMap.insert(unordered_map<eSound, Sound*>::value_type(n, temp));
 }
 
 
 void CSoundManager::DestroySound(eSound n)
 {
-	pSound[n]->release();
-	pSound[n] = nullptr;
+	
+	SongMap[n]->release();
+	SongMap.erase(n);
 }
 
 
 void CSoundManager::PlaySound(eChannel c, eSound n)
 {
 	FMOD_RESULT f;
-	f = pSystem->playSound(FMOD_CHANNEL_FREE, pSound[n], false, &pChannel[c]);
+	f = pSystem->playSound(FMOD_CHANNEL_FREE, SongMap[n], false, &pChannel[c]);
 	f;
 }
 

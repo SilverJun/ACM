@@ -9,9 +9,11 @@
 #include <fstream>
 #include <memory>
 #include <algorithm>
+
 #include <vector>
 #include <deque>
-#include <list>
+#include <unordered_map>
+
 #include <ctime>
 #include <cmath>
 #include <mutex>
@@ -43,8 +45,7 @@ enum eScene
 {
 	sMainMenu = 1,
 	sMusicSelect,
-	sGame_Song1,
-	sGame_Song2,
+	sGame,
 	sGameEnd,
 	sRule,
 	sScore,
@@ -63,8 +64,9 @@ enum eSound
 	eMainMenuSound,
 	eMusicSelectSound,
 	eEffectMusic,
-	eGameMusic1,		//your addiction
-	eGameMusic2			//english listening
+	eGameTheme
+	//your addiction		
+	//english listening
 };
 
 enum eNote
@@ -78,6 +80,7 @@ enum eNote
 
 enum eSong
 {
+	eMainMenu,
 	eYour_Addiction,
 	eEnglish_Listening
 };

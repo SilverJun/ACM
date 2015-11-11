@@ -41,11 +41,13 @@ void CScene_MusicSelect::Update()
 	{
 		if (g_EventManager->CheckCollition_by_mouse(MenuBox[music1]))
 		{
-			g_SceneManager->SetScene(sGame_Song1);
+			g_SceneManager->SetParam(eYour_Addiction);
+			g_SceneManager->SetScene(sGame);
 		}
 		//else if (g_EventManager->CheckCollition_by_mouse(MenuBox[music2]))
 		//{
-		//	g_SceneManager->SetScene(sGame_Song2);
+		//	g_SceneManager->SetParam(eEnglish_Listening);
+		//	g_SceneManager->SetScene(sGame);
 		//}
 	}
 }

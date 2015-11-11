@@ -14,7 +14,6 @@ class CScene_Game : public CScene
 {
 public:
 	CScene_Game();
-	CScene_Game(eSound);
 	~CScene_Game();
 
 	void addNote(CSprite_Note *);
@@ -25,6 +24,8 @@ public:
 	virtual void Release() override;
 
 	float GetMouseRotation();
+
+	void SetSong(eSong Song);
 
 private:
 	int Score;
@@ -57,6 +58,6 @@ private:
 	char strScore[128];
 	SDL_Rect ScoreBox;
 
-	eSound ThisSong;
+	eSong ThisSong;
 };
 

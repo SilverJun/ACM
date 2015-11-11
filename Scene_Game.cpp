@@ -14,31 +14,37 @@ enum {eSpawnNote, ePlayer};
 
 CScene_Game::CScene_Game() : CScene(sThisScene)
 {
-}
-
-
-CScene_Game::CScene_Game(eSound Song) : CScene(sThisScene)
-{
-	ThisSong = Song;
-	switch (ThisSong)
-	{
-	case eGameMusic1:
-		SinkFile.open("./Resource/Duelle_amp_CiRRO-Your_Addiction_Culture_Code_Remix.txt");
-		break;
-	case eGameMusic2:
-		SinkFile.open("./Resource/English_Listening_Type_B.txt");
-		break;
-	default:
-		break;
-	}
-	
-
+	SetSong(static_cast<eSong>(g_SceneManager->Param));
 }
 
 
 CScene_Game::~CScene_Game()
 {
 	Release();
+}
+
+
+void CScene_Game::SetSong(eSong Song)
+{
+	ThisSong = Song;
+
+	switch (ThisSong)
+	{
+	case eYour_Addiction:
+		SinkFile.open("./Resource/Duelle_amp_CiRRO-Your_Addiction_Culture_Code_Remix.txt");
+		SetSceneBGImage("./Resource/Duelle_amp_CiRRO-Your_Addiction_Culture_Code_Remix.jpg");
+		break;
+	case eEnglish_Listening:
+		SinkFile.open("./Resource/English_Listening_Type_B.txt");
+		//SetSceneBGImage("./Resource/Duelle_amp_CiRRO-Your_Addiction_Culture_Code_Remix.jpg");
+		break;
+	//case eEnglish_Listening:
+	//	SinkFile.open("./Resource/English_Listening_Type_B.txt");
+	//	//SetSceneBGImage("./Resource/Duelle_amp_CiRRO-Your_Addiction_Culture_Code_Remix.jpg");
+	//	break;
+	default:
+		break;
+	}
 }
 
 
@@ -49,10 +55,10 @@ void CScene_Game::Init()
 	addSprite(new CSprite_Player());
 	SDL_ShowCursor(0);
 
-	g_SoundManager->MakeSound(ThisSong);
+	g_SoundManager->MakeSound(eGameTheme, ThisSong);
 
 	unsigned int time;
-	g_SoundManager->pSound[ThisSong]->getLength(&time, FMOD_TIMEUNIT_MS);
+	g_SoundManager->SongMap[eGameTheme]->getLength(&time, FMOD_TIMEUNIT_MS);
 	GameEndTime = time;
 
 	ScoreTime = 100;
@@ -63,7 +69,7 @@ void CScene_Game::Init()
 
 	g_TimeManager->Update();
 	
-	g_SoundManager->PlaySound(eChannel1, ThisSong);
+	g_SoundManager->PlaySound(eChannel1, eGameTheme);
 
 	//interval = 10;
 	CommonSink.Rotation = 0;
@@ -86,6 +92,8 @@ void CScene_Game::Init()
 	ScoreBox = { 20, 20, 0, 50 };
 	sprintf(strScore, "점수 %d", Score);
 	ScoreBox.w = (strlen(strScore) - 1) * 25;
+
+	g_TextManager->SetColor(255, 255, 255);
 
 	g_TextManager->CreateText(strScore, &ScoreBox);
 }
@@ -134,6 +142,7 @@ void CScene_Game::Update()
 	vSprite[eSpawnNote]->Update();
 	vSprite[ePlayer]->Update();
 
+	
 	if (CurTime > SinkTime)		//노트가 나와야 하는 타이밍
 	{
 		switch (NoteType)
@@ -184,6 +193,7 @@ void CScene_Game::Update()
 
 		SinkFile >> SinkTime >> NoteType >> CommonSink.Rotation >> CommonSink.Speed;
 	}
+
 
 	if (bIsSprial)		//달팽이노트
 	{
@@ -315,8 +325,10 @@ void CScene_Game::Render()
 
 void CScene_Game::Release()
 {
+	g_TextManager->SetColor(0, 0, 0);
+
 	g_SoundManager->StopSound(eChannel1);
-	g_SoundManager->DestroySound(ThisSong);
+	g_SoundManager->DestroySound(eGameTheme);
 	g_TextManager->DestroyTextAll();
 	ScoreFile.close();
 	SinkFile.close();

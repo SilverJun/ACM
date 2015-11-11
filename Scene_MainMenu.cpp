@@ -49,9 +49,13 @@ void CScene_MainMenu::Init()
 	{
 		g_TextManager->CreateText(MenuString[i], &MenuBox[i]);
 	}
-	if (g_SoundManager->pSound[eMainMenuSound] == nullptr)
+
+	bool b;
+	g_SoundManager->pChannel[eBGMChannel]->isPlaying(&b);
+
+	if (!b)
 	{
-		g_SoundManager->MakeSound(eMainMenuSound);
+		g_SoundManager->MakeSound(eMainMenuSound, eMainMenu);
 		g_SoundManager->PlaySound(eBGMChannel, eMainMenuSound);
 	}
 	
@@ -64,8 +68,10 @@ void CScene_MainMenu::Update()
 	{
 		if (g_EventManager->CheckCollition_by_mouse(MenuBox[Start]))
 		{
+			g_SoundManager->pChannel[eBGMChannel]->stop();
 			g_SoundManager->DestroySound(eMainMenuSound);
 			g_SceneManager->SetScene(sMusicSelect);
+			
 		}
 		else if (g_EventManager->CheckCollition_by_mouse(MenuBox[Rule]))
 		{

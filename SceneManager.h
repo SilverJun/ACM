@@ -9,6 +9,7 @@ protected:
 	int SceneIdx;
 
 public:
+	int Param;
 	CSceneManager(void);
 	~CSceneManager(void);
 
@@ -19,6 +20,7 @@ public:
 	void Render();
 	void Release();
 
+	void SetParam(int n);
 };
 
 #define g_SceneManager CSceneManager::GetInstance()

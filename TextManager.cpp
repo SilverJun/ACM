@@ -37,7 +37,7 @@ void CTextManager::Init()
 
 	
 
-	color.a = 0;
+	color.a = 255;
 	color.r = 0;
 	color.g = 0;
 	color.b = 0;
@@ -166,6 +166,14 @@ void CTextManager::ModifyText(char * string, int idx)
 	{
 		pTTF_Surface[idx] = TTF_RenderUNICODE_Blended(pTTF_Font, string_han[idx], color);
 	}
+}
+
+
+void CTextManager::SetColor(Uint8 r, Uint8 g, Uint8 b)
+{
+	color.r = r;
+	color.g = g;
+	color.b = b;
 }
 
 

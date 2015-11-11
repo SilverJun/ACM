@@ -3,8 +3,6 @@
 
 using namespace FMOD;
 
-#define MAX_SOUND	5
-
 class CSoundManager : public Singleton<CSoundManager>
 {
 public:
@@ -15,18 +13,19 @@ public:
 	void Update();
 	void Release();
 
-	void MakeSound(eSound n);
+	void MakeSound(eSound n, eSong song);
 	void DestroySound(eSound n);
 
 	void PlaySound(eChannel c, eSound n);
 	void PauseSound(eChannel c, bool b);
 	void StopSound(eChannel c);
-	
-	char path[5][100];
+
+	unordered_map<eSound, Sound*> SongMap;
+
+	unordered_map<eSong, char *> FilePath;
 
 	System *pSystem;
 	Channel *pChannel[3];
-	Sound * pSound[MAX_SOUND];
 };
 
 #define g_SoundManager CSoundManager::GetInstance()
