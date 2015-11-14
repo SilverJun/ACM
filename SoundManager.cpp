@@ -24,10 +24,12 @@ void CSoundManager::Init()
 	//eMusicSelectSound,
 	//eEffectMusic,
 	//eGameTheme
+
 	FilePath.insert(unordered_map<eSong, char*>::value_type(eMainMenu, "./Resource/DJ_YOSHITAKA-VALLIS-NERIA.mp3"));
 	FilePath.insert(unordered_map<eSong, char*>::value_type(eYour_Addiction, "./Resource/Duelle_amp_CiRRO-Your_Addiction_Culture_Code_Remix.mp3"));
 	FilePath.insert(unordered_map<eSong, char*>::value_type(eEnglish_Listening, "./Resource/English_Listening_Type_B.mp3"));
 	FilePath.insert(unordered_map<eSong, char*>::value_type(eCircles, "./Resource/KDrew - Circles (Original Mix).mp3")); 
+	FilePath.insert(unordered_map<eSong, char*>::value_type(eBreak, "./Resource/Beenzino - Break [MV].mp3"));
 }
 
 void CSoundManager::Update()
@@ -63,7 +65,6 @@ void CSoundManager::MakeSound(eSound n, eSong song)
 
 void CSoundManager::DestroySound(eSound n)
 {
-	
 	SongMap[n]->release();
 	SongMap.erase(n);
 }

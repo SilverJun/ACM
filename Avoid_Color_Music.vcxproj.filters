@@ -108,6 +108,9 @@
     <ClInclude Include="Scene_GameEnd.h">
       <Filter>소스 파일\ACM\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Sprite_Bar.h">
+      <Filter>소스 파일\ACM\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -172,6 +175,9 @@
     </ClCompile>
     <ClCompile Include="Scene_GameEnd.cpp">
       <Filter>소스 파일\ACM\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite_Bar.cpp">
+      <Filter>소스 파일\ACM\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

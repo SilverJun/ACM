@@ -8,8 +8,9 @@
 #include "Scene_Game.h"
 #include "Sprite_Player.h"
 #include "Sprite_SpawnNote.h"
+#include "Sprite_Bar.h"
 
-enum {eSpawnNote, ePlayer};
+enum {eSpawnNote, ePlayer, eBar};
 
 
 CScene_Game::CScene_Game() : CScene(sThisScene)
@@ -53,6 +54,7 @@ void CScene_Game::Init()
 	addSprite(new CSprite_SpawnNote());
 	vSprite[eSpawnNote]->Update();
 	addSprite(new CSprite_Player());
+	addSprite(new CSprite_Bar());
 	SDL_ShowCursor(0);
 
 	g_SoundManager->MakeSound(eGameTheme, ThisSong);
@@ -62,7 +64,7 @@ void CScene_Game::Init()
 	GameEndTime = time;
 
 	ScoreTime = 100;
-	xScoreTime = 5000;
+	xScoreTime = 1000;
 	xScore = 1.0f;
 
 	SinkFile >> SinkTime >> NoteType >> CommonSink.Rotation >> CommonSink.Speed;
@@ -89,13 +91,19 @@ void CScene_Game::Init()
 	bIsGameEnd = false;
 
 	Score = 0;
-	ScoreBox = { 20, 20, 0, 50 };
-	sprintf(strScore, "점수 %d", Score);
-	ScoreBox.w = (strlen(strScore) - 1) * 25;
+	ScoreBox[0] = { 20, 20, 0, 50 };
+	ScoreBox[1] = { 20, 80, 0, 50 };
+
+	sprintf(strScore[0], "점수 %d", Score);
+	sprintf(strScore[1], "x%.1f", xScore);
+
+	ScoreBox[0].w = (strlen(strScore[0]) - 1) * 25;
+	ScoreBox[1].w = (strlen(strScore[1]) - 1) * 25;
 
 	g_TextManager->SetColor(255, 255, 255);
 
-	g_TextManager->CreateText(strScore, &ScoreBox);
+	g_TextManager->CreateText(strScore[0], &ScoreBox[0]);
+	g_TextManager->CreateText(strScore[1], &ScoreBox[1]);
 }
 
 
@@ -122,7 +130,8 @@ void CScene_Game::Update()
 			delete vNote[i];
 			swap(vNote[i], vNote.back());
 			vNote.pop_back();
-			xScore = 1.0f;
+			xScore = 0.9f;
+			//xScoreTime = CurTime;
 		}
 		else
 		{
@@ -201,6 +210,13 @@ void CScene_Game::Update()
 			bIsSpiral = true;
 			break;
 
+		case note_EightWaySpiral:
+			SpiralSink.Rotation = CommonSink.Rotation;
+			SpiralSink.Speed = CommonSink.Speed;
+			SpiralWay = note_EightWaySpiral;
+			bIsSpiral = true;
+			break;
+
 		default:
 			break;
 		}
@@ -242,6 +258,20 @@ void CScene_Game::Update()
 				SpiralSink.Speed += CommonSink.Speed_Rate;
 				break;
 
+			case note_EightWaySpiral:
+				vNote.push_back(new CSprite_Note(note_FourWayNormal, SpiralSink.Rotation, 0.f, SpiralSink.Speed, 0.f));
+				vNote.push_back(new CSprite_Note(note_FourWayNormal, SpiralSink.Rotation + 90, 0.f, SpiralSink.Speed, 0.f));
+				vNote.push_back(new CSprite_Note(note_FourWayNormal, SpiralSink.Rotation + 180, 0.f, SpiralSink.Speed, 0.f));
+				vNote.push_back(new CSprite_Note(note_FourWayNormal, SpiralSink.Rotation + 270, 0.f, SpiralSink.Speed, 0.f));
+				vNote.push_back(new CSprite_Note(note_FourWayNormal, SpiralSink.Rotation + 45, 0.f, SpiralSink.Speed, 0.f));
+				vNote.push_back(new CSprite_Note(note_FourWayNormal, SpiralSink.Rotation + 135, 0.f, SpiralSink.Speed, 0.f));
+				vNote.push_back(new CSprite_Note(note_FourWayNormal, SpiralSink.Rotation + 225, 0.f, SpiralSink.Speed, 0.f));
+				vNote.push_back(new CSprite_Note(note_FourWayNormal, SpiralSink.Rotation + 315, 0.f, SpiralSink.Speed, 0.f));
+
+				SpiralSink.Speed += CommonSink.Speed_Rate;
+				break;
+
+
 			default:
 				break;
 			}
@@ -266,18 +296,20 @@ void CScene_Game::Update()
 		ScoreTime += 100;
 
 		Score += 100 * xScore;
-		sprintf(strScore, "점수 %d", Score);
-		ScoreBox.w = (strlen(strScore) - 1) * 25;
-		g_TextManager->ModifyText(strScore, 0);
+		sprintf(strScore[0], "점수 %d", Score);
+		ScoreBox[0].w = (strlen(strScore[0]) - 1) * 25;
+		g_TextManager->ModifyText(strScore[0], 0);
 	}
 
 	if (CurTime >= xScoreTime)
 	{
-		if (xScore < 2.0f)
+		if (xScore < 4.9f)
 		{
 			xScore += 0.1f;
+			sprintf(strScore[1], "x%.1f", xScore);
+			g_TextManager->ModifyText(strScore[1], 1);
 		}
-		xScoreTime += 5000;
+		xScoreTime += 1000;
 	}
 
 	if (CurTime >= GameEndTime)
@@ -347,7 +379,7 @@ void CScene_Game::Render()
 	}
 
 	
-
+	vSprite[eBar]->Update();
 
 }
 

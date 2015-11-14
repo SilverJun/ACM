@@ -99,6 +99,7 @@
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="Sprite_Bar.h" />
     <ClInclude Include="Sprite_Note.h" />
     <ClInclude Include="Sprite_Player.h" />
     <ClInclude Include="Sprite_SpawnNote.h" />
@@ -123,6 +124,7 @@
     <ClCompile Include="Scene_Score.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="Sprite_Bar.cpp" />
     <ClCompile Include="Sprite_Note.cpp" />
     <ClCompile Include="Sprite_Player.cpp" />
     <ClCompile Include="Sprite_SpawnNote.cpp" />

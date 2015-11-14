@@ -55,8 +55,8 @@ private:
 
 	fstream SinkFile, ScoreFile;
 
-	char strScore[128];
-	SDL_Rect ScoreBox;
+	char strScore[2][128];
+	SDL_Rect ScoreBox[2];
 
 	eSong ThisSong;
 };

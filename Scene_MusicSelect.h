@@ -1,7 +1,9 @@
 #pragma once
 #include "Scene.h"
 
-enum eMusicBox{ PlayList, music1, music2, music3 };
+#define MAX_MUSIC	4
+
+enum eMusicBox{ PlayList, music1, music2, music3, music4 };
 
 class CScene_MusicSelect : public CScene
 {
@@ -14,7 +16,7 @@ public:
 	virtual void Release() override;
 
 private:
-	SDL_Rect MenuBox[4];
-	char MenuString[4][100];
+	SDL_Rect MenuBox[MAX_MUSIC + 1];
+	char MenuString[MAX_MUSIC + 1][100];
 };
 

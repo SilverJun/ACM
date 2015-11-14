@@ -65,8 +65,6 @@ enum eSound
 	eMusicSelectSound,
 	eEffectMusic,
 	eGameTheme
-	//your addiction		
-	//english listening
 };
 
 enum eNote
@@ -77,7 +75,8 @@ enum eNote
 	note_Spiral_Right,
 	note_Random,
 	note_NormalSpiral,
-	note_FourWaySpiral
+	note_FourWaySpiral,
+	note_EightWaySpiral
 };
 
 enum eSong
@@ -85,7 +84,8 @@ enum eSong
 	eMainMenu,
 	eYour_Addiction,
 	eEnglish_Listening,
-	eCircles
+	eCircles,
+	eBreak
 };
 
 

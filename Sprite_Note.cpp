@@ -16,7 +16,7 @@ CSprite_Note::CSprite_Note(eNote type, float Rotation, float Rotation_Rate, int 
 {
 	NoteType = type;
 
-	
+	int NoteColor = rand() % 8;
 	
 	switch (type)
 	{
@@ -33,8 +33,9 @@ CSprite_Note::CSprite_Note(eNote type, float Rotation, float Rotation_Rate, int 
 		SpriteRect = { 0, 0, 44, 44 };
 		break;
 	case note_Random:
-		SpriteTexture = SDL_CreateTextureFromSurface(g_DrawManager->pRenderer, g_DrawManager->RandomNoteSurface);
+		SpriteTexture = SDL_CreateTextureFromSurface(g_DrawManager->pRenderer, g_DrawManager->Note[NoteColor]);
 		SetSpriteCenter(20, 20);
+		SpriteRect = { 0, 0, 20, 20 };
 		break;
 	default:
 		break;
