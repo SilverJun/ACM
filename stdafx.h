@@ -91,7 +91,7 @@ enum eSong
 };
 
 
-#define WINDOW_DEFAULT_W	1024
-#define WINDOW_DEFAULT_H	768
+#define WINDOW_DEFAULT_W	1280
+#define WINDOW_DEFAULT_H	960
 
 using namespace std;

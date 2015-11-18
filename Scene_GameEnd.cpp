@@ -61,7 +61,7 @@ void CScene_GameEnd::Init()
 		g_TextManager->CreateText(strScore[i], &ScoreBox[i]);
 	}
 
-
+	g_SoundManager->DestroySound(eEffectMusic);
 	g_SoundManager->MakeSound(eEffectMusic, eEffect_GameEnd);
 	g_SoundManager->PlaySound(eChannel2, eEffectMusic);
 }
