@@ -9,6 +9,8 @@ public:
 
 	virtual void Update() override;
 
+	eNote GetNoteType();
+
 private:
 	float Rotation_Rate;
 	int Speed;

@@ -30,7 +30,7 @@ CScene_Score::~CScene_Score()
 void CScene_Score::Init()
 {
 	sprintf(strScore[0], "*점수*");
-	sprintf(strScore[1], "※현재 YourAddction만 점수기록 지원합니다.");
+	sprintf(strScore[1], "※통합 점수관리로 제일 높은 점수만 저장됩니다.");
 	sprintf(strScore[2], "최고점수 %d", BestScore);
 	sprintf(strScore[3], "메인메뉴로");
 

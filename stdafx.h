@@ -85,7 +85,9 @@ enum eSong
 	eYour_Addiction,
 	eEnglish_Listening,
 	eCircles,
-	eBreak
+	eEffect_Click,
+	eEffect_ComboBreak,
+	eEffect_GameEnd
 };
 
 

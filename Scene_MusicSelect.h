@@ -1,7 +1,7 @@
 #pragma once
 #include "Scene.h"
 
-#define MAX_MUSIC	4
+#define MAX_MUSIC	3
 
 enum eMusicBox{ PlayList, music1, music2, music3, music4 };
 

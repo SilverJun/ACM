@@ -7,22 +7,19 @@
 CScene_MusicSelect::CScene_MusicSelect() : CScene(sMusicSelect)
 {
 	MenuBox[PlayList] = { 100, 100, 0, 50 };
-	MenuBox[music1] = { 100, 200, 0, 50 };
-	MenuBox[music2] = { 100, 300, 0, 50 };
+	MenuBox[music1] = { 100, 300, 0, 50 };
+	MenuBox[music2] = { 100, 200, 0, 50 };
 	MenuBox[music3] = { 100, 400, 0, 50 };
-	MenuBox[music4] = { 100, 500, 0, 50 };
 
 	strcpy(MenuString[PlayList], "PlayList");
+	strcpy(MenuString[music2], "Æ©Åä¸®¾ó-¿µ¾î µè±â BÇü ¸®¹Í½º");
 	strcpy(MenuString[music1], "Your_Addiction_Culture_Code_Remix");
-	strcpy(MenuString[music2], "¿µ¾î µè±â BÇü ¸®¹Í½º(¹Ì¿Ï¼º)");
 	strcpy(MenuString[music3], "KDrew - Circles (Original Mix)");
-	strcpy(MenuString[music4], "Beenzino - Break [MV]");
 
 	MenuBox[PlayList].w = (strlen(MenuString[PlayList]) - 1) * 25;
 	MenuBox[music1].w = (strlen(MenuString[music1]) - 1) * 25;
 	MenuBox[music2].w = (strlen(MenuString[music2]) - 1) * 25;
 	MenuBox[music3].w = (strlen(MenuString[music3]) - 1) * 25;
-	MenuBox[music4].w = (strlen(MenuString[music4]) - 1) * 25;
 }
 
 
@@ -58,11 +55,6 @@ void CScene_MusicSelect::Update()
 		else if (g_EventManager->CheckCollition_by_mouse(MenuBox[music3]))
 		{
 			g_SceneManager->SetParam(eCircles);
-			g_SceneManager->SetScene(sGame);
-		}
-		else if (g_EventManager->CheckCollition_by_mouse(MenuBox[music4]))
-		{
-			g_SceneManager->SetParam(eBreak);
 			g_SceneManager->SetScene(sGame);
 		}
 	}

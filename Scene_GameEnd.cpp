@@ -21,6 +21,7 @@ CScene_GameEnd::CScene_GameEnd() : CScene(sGameEnd)
 	ScoreBox[2] = { 100, 300, 0, 50 };
 	ScoreBox[3] = { 100, 400, 0, 50 };
 	ScoreBox[4] = { 20, 20, 0, 50 };
+
 }
 
 
@@ -59,6 +60,10 @@ void CScene_GameEnd::Init()
 	{
 		g_TextManager->CreateText(strScore[i], &ScoreBox[i]);
 	}
+
+
+	g_SoundManager->MakeSound(eEffectMusic, eEffect_GameEnd);
+	g_SoundManager->PlaySound(eChannel2, eEffectMusic);
 }
 
 

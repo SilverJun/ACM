@@ -68,3 +68,8 @@ void CSprite_Note::Update()
 }
 
 
+eNote CSprite_Note::GetNoteType()
+{
+	return NoteType;
+}
+

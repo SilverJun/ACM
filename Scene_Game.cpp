@@ -33,7 +33,7 @@ void CScene_Game::SetSong(eSong Song)
 	{
 	case eYour_Addiction:
 		SinkFile.open("./Resource/Duelle_amp_CiRRO-Your_Addiction_Culture_Code_Remix.txt");
-		SetSceneBGImage("./Resource/Duelle_amp_CiRRO-Your_Addiction_Culture_Code_Remix.jpg");
+		
 		break;
 	case eEnglish_Listening:
 		SinkFile.open("./Resource/English_Listening_Type_B.txt");
@@ -46,6 +46,8 @@ void CScene_Game::SetSong(eSong Song)
 	default:
 		break;
 	}
+
+	SetSceneBGImage("./Resource/Duelle_amp_CiRRO-Your_Addiction_Culture_Code_Remix.jpg");
 }
 
 
@@ -57,7 +59,10 @@ void CScene_Game::Init()
 	addSprite(new CSprite_Bar());
 	SDL_ShowCursor(0);
 
+	g_SoundManager->DestroySound(eEffectMusic);
+
 	g_SoundManager->MakeSound(eGameTheme, ThisSong);
+	g_SoundManager->MakeSound(eEffectMusic, eEffect_ComboBreak);
 
 	unsigned int time;
 	g_SoundManager->SongMap[eGameTheme]->getLength(&time, FMOD_TIMEUNIT_MS);
@@ -104,6 +109,8 @@ void CScene_Game::Init()
 
 	g_TextManager->CreateText(strScore[0], &ScoreBox[0]);
 	g_TextManager->CreateText(strScore[1], &ScoreBox[1]);
+
+	
 }
 
 
@@ -127,10 +134,20 @@ void CScene_Game::Update()
 		}
 		else if (g_EventManager->CheckCollition_by_Circle(vSprite[ePlayer],vNote[i]))		//플레이어와 맞으면 동적해제
 		{
+			if (vNote[i]->GetNoteType() == note_Random)
+			{
+				Score -= 1500;
+			}
+			else
+			{
+				xScore = 0.9f;
+			}
+
 			delete vNote[i];
 			swap(vNote[i], vNote.back());
 			vNote.pop_back();
-			xScore = 0.9f;
+			
+			g_SoundManager->PlaySound(eChannel2, eEffectMusic);
 			//xScoreTime = CurTime;
 		}
 		else

@@ -9,7 +9,7 @@
 
 CScene_MainMenu::CScene_MainMenu() : CScene(sMainMenu)
 {
-	SetSceneBGImage("./Resource/MainMenu.png");
+	SetSceneBGImage("./Resource/ACM.png");
 
 	MenuBox[Start]	= { 100, 650, 0, 50 };
 	MenuBox[Rule]	= { 0, 650, 0, 50 };
@@ -40,6 +40,7 @@ CScene_MainMenu::CScene_MainMenu() : CScene(sMainMenu)
 CScene_MainMenu::~CScene_MainMenu()
 {
 	Release();
+
 }
 
 
@@ -58,7 +59,8 @@ void CScene_MainMenu::Init()
 		g_SoundManager->MakeSound(eMainMenuSound, eMainMenu);
 		g_SoundManager->PlaySound(eBGMChannel, eMainMenuSound);
 	}
-	
+
+	g_SoundManager->MakeSound(eEffectMusic, eEffect_Click);
 }
 
 
@@ -66,6 +68,7 @@ void CScene_MainMenu::Update()
 {
 	if (g_EventManager->g_Event.button.button == SDL_BUTTON_LEFT)
 	{
+		g_SoundManager->PlaySound(eChannel2, eEffectMusic);
 		if (g_EventManager->CheckCollition_by_mouse(MenuBox[Start]))
 		{
 			g_SoundManager->pChannel[eBGMChannel]->stop();
@@ -94,6 +97,7 @@ void CScene_MainMenu::Update()
 
 void CScene_MainMenu::Release()
 {
+	
 	//g_SoundManager->DestroySound(eMainMenuSound);
 	g_TextManager->DestroyTextAll();
 }
