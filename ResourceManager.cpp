@@ -5,7 +5,7 @@
 
 CResourceManager::CResourceManager()
 {
-	key = "silver5609";
+	key = "ACM00";
 }
 
 
