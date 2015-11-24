@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "TextManager.h"
+#include "ResourceManager.h"
 
 #include "han2unicode.h"
 #include "DrawManager.h"
@@ -54,7 +55,7 @@ void CTextManager::Init()
 		}
 	}
 
-	pTTF_Font = TTF_OpenFont("./Resource/korFont.ttf", point);
+	pTTF_Font = TTF_OpenFontRW(g_ResourceManager->LoadItem("korFont.TTF"), 0, point);
 }
 
 

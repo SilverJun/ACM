@@ -9,6 +9,7 @@ void CDirector::Init()
 	srand((unsigned int)time(NULL));
 	GameDone = false;
 
+	g_ResourceManager->Init();
 	g_TextManager->Init();
 	g_SoundManager->Init();
 	g_SceneManager->Init();
@@ -47,11 +48,13 @@ void CDirector::Render()
 void CDirector::Release()
 {
 	//cout << "Director Release()" << endl;
+	
 	g_DrawManager->Release();
 	g_EventManager->Release();
 	g_SoundManager->Release();
 	g_SceneManager->Release();
 	g_TextManager->Release();
+	g_ResourceManager->Release();
 
 	//g_DrawManager->Destroy();
 	//g_EventManager->Destroy();

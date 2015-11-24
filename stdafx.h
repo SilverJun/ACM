@@ -18,6 +18,7 @@
 #include <cmath>
 #include <mutex>
 
+#include <Windows.h>
 #include <conio.h>
 
 //======== 추가 라이브러리 헤더 ========
@@ -91,7 +92,7 @@ enum eSong
 };
 
 
-#define WINDOW_DEFAULT_W	1280
-#define WINDOW_DEFAULT_H	960
+#define WINDOW_DEFAULT_W	1024
+#define WINDOW_DEFAULT_H	768
 
 using namespace std;

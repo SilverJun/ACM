@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "ResourceManager.h"
 #include "DrawManager.h"
 #include "Sprite.h"
 
@@ -39,7 +40,7 @@ CSprite::~CSprite()
 
 void CSprite::SetSpriteImage(char * filepath)
 {
-	SpriteImage = IMG_Load(filepath);
+	SpriteImage = IMG_Load_RW(g_ResourceManager->LoadItem(filepath), 0);
 
 	SpriteTexture = SDL_CreateTextureFromSurface(g_DrawManager->pRenderer, SpriteImage);
 

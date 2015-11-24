@@ -7,7 +7,7 @@
 
 CSprite_Player::CSprite_Player() : CSprite("Player", 29, 29, 5, 5, 19, 19)
 {
-	SetSpriteImage("./Resource/Player.png");
+	SetSpriteImage("Player.png");
 }
 
 

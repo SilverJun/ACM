@@ -9,7 +9,7 @@
 
 CScene_MainMenu::CScene_MainMenu() : CScene(sMainMenu)
 {
-	SetSceneBGImage("./Resource/ACM.png");
+	SetSceneBGImage("ACM.PNG");
 
 	MenuBox[Start]	= { 100, 650, 0, 50 };
 	MenuBox[Rule]	= { 0, 650, 0, 50 };
@@ -60,6 +60,11 @@ void CScene_MainMenu::Init()
 		g_SoundManager->PlaySound(eBGMChannel, eMainMenuSound);
 	}
 
+	if (g_SoundManager->SongMap.find(eEffectMusic) != g_SoundManager->SongMap.end())
+	{
+		g_SoundManager->DestroySound(eEffectMusic);
+	}
+
 	g_SoundManager->MakeSound(eEffectMusic, eEffect_Click);
 }
 
@@ -68,31 +73,36 @@ void CScene_MainMenu::Update()
 {
 	if (g_EventManager->g_Event.button.button == SDL_BUTTON_LEFT)
 	{
-		g_SoundManager->PlaySound(eChannel2, eEffectMusic);
+		
 		if (g_EventManager->CheckCollition_by_mouse(MenuBox[Start]))
 		{
+			g_SoundManager->PlaySound(eChannel2, eEffectMusic);
 			g_SoundManager->pChannel[eBGMChannel]->stop();
 			g_SoundManager->DestroySound(eMainMenuSound);
 			g_SceneManager->SetScene(sMusicSelect);
-			
 		}
 		else if (g_EventManager->CheckCollition_by_mouse(MenuBox[Rule]))
 		{
+			g_SoundManager->PlaySound(eChannel2, eEffectMusic);
 			g_SceneManager->SetScene(sRule);
 		} 
 		else if (g_EventManager->CheckCollition_by_mouse(MenuBox[Score]))
 		{
+			g_SoundManager->PlaySound(eChannel2, eEffectMusic);
 			g_SceneManager->SetScene(sScore);
 		}
 		else if (g_EventManager->CheckCollition_by_mouse(MenuBox[Credit]))
 		{
+			g_SoundManager->PlaySound(eChannel2, eEffectMusic);
 			g_SceneManager->SetScene(sCredit);
 		}
 		else if (g_EventManager->CheckCollition_by_mouse(MenuBox[Exit]))
 		{
+			g_SoundManager->PlaySound(eChannel2, eEffectMusic);
 			g_Director->GameDone = true;
 		}
 	}
+	
 }
 
 void CScene_MainMenu::Release()

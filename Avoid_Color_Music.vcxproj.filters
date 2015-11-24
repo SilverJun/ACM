@@ -111,6 +111,12 @@
     <ClInclude Include="Sprite_Bar.h">
       <Filter>소스 파일\ACM\Object</Filter>
     </ClInclude>
+    <ClInclude Include="unzip.h">
+      <Filter>소스 파일\Engine\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -178,6 +184,12 @@
     </ClCompile>
     <ClCompile Include="Sprite_Bar.cpp">
       <Filter>소스 파일\ACM\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="unzip.cpp">
+      <Filter>소스 파일\Engine\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>소스 파일\Engine\Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

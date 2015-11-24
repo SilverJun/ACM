@@ -1,5 +1,6 @@
 #include "StdAfx.h"
 #include "Scene.h"
+#include "ResourceManager.h"
 #include "TimeManager.h"
 
 CScene::CScene(eScene n)
@@ -8,7 +9,7 @@ CScene::CScene(eScene n)
 	SceneBGRect.y = 0;
 	SceneBGRect.w = WINDOW_DEFAULT_W;
 	SceneBGRect.h = WINDOW_DEFAULT_H;
-	SetSceneBGImage("./Resource/DefaultBackGround.png");
+	SetSceneBGImage("DefaultBackGround.PNG");
 	nSprite = 0;
 	sThisScene = n;
 }
@@ -26,7 +27,7 @@ CScene::~CScene(void)
 
 void CScene::SetSceneBGImage(char *filepath)
 {
-	SceneBGImage = IMG_Load(filepath);
+	SceneBGImage = IMG_Load_RW(g_ResourceManager->LoadItem(filepath), 0);
 
 	SceneBGTexture = SDL_CreateTextureFromSurface(g_DrawManager->pRenderer, SceneBGImage);
 

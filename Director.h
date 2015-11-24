@@ -6,6 +6,7 @@
 #include "EventManager.h"
 #include "TimeManager.h"
 #include "TextManager.h"
+#include "ResourceManager.h"
 
 class CDirector : public Singleton<CDirector>
 {

@@ -18,18 +18,7 @@ CDrawManager::CDrawManager(void)
 
 	pRenderer = SDL_CreateRenderer(pWindow, -1, 0);
 
-	NormalNoteSurface = IMG_Load("./Resource/NormalNote.png");
-	RandomNoteSurface = IMG_Load("./Resource/RandomNote.png");
-	SpiralNoteSurface = IMG_Load("./Resource/SpiralNote.png");
-
-	Note[0] = IMG_Load("./Resource/Note__1.png");
-	Note[1] = IMG_Load("./Resource/Note__2.png");
-	Note[2] = IMG_Load("./Resource/Note__3.png");
-	Note[3] = IMG_Load("./Resource/Note__4.png");
-	Note[4] = IMG_Load("./Resource/Note__5.png");
-	Note[5] = IMG_Load("./Resource/Note__6.png");
-	Note[6] = IMG_Load("./Resource/Note__7.png");
-	Note[7] = IMG_Load("./Resource/Note__8.png");
+	
 }
 
 
@@ -54,14 +43,7 @@ void CDrawManager::Render()
 
 void CDrawManager::Release()
 {
-	for (int i = 0; i < 8; i++)
-	{
-		SDL_FreeSurface(Note[i]);
-	}
-
-	SDL_FreeSurface(SpiralNoteSurface);
-	SDL_FreeSurface(RandomNoteSurface);
-	SDL_FreeSurface(NormalNoteSurface);
+	
 
 	SDL_DestroyRenderer(pRenderer);
 	SDL_DestroyWindow(pWindow);

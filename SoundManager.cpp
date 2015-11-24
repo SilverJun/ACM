@@ -60,6 +60,7 @@ void CSoundManager::MakeSound(eSound n, eSong song)
 {
 	FMOD_RESULT f;
 	Sound *temp;
+	
 	f = pSystem->createSound(FilePath[song], FMOD_DEFAULT, NULL, &temp);
 	f;
 

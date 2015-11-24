@@ -26,7 +26,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -87,6 +87,7 @@
     <ClInclude Include="DrawManager.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="han2unicode.h" />
+    <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Scene_Credit.h" />
@@ -107,12 +108,14 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TextManager.h" />
     <ClInclude Include="TimeManager.h" />
+    <ClInclude Include="unzip.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Avoid_Color_Music.cpp" />
     <ClCompile Include="Director.cpp" />
     <ClCompile Include="DrawManager.cpp" />
     <ClCompile Include="EventManager.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Scene_Credit.cpp" />
@@ -134,6 +137,7 @@
     </ClCompile>
     <ClCompile Include="TextManager.cpp" />
     <ClCompile Include="TimeManager.cpp" />
+    <ClCompile Include="unzip.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

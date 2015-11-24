@@ -59,5 +59,7 @@ private:
 	SDL_Rect ScoreBox[2];
 
 	eSong ThisSong;
+
+	
 };
 

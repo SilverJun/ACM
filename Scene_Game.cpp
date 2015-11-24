@@ -4,6 +4,7 @@
 #include "EventManager.h"
 #include "TextManager.h"
 #include "SoundManager.h"
+#include "ResourceManager.h"
 
 #include "Scene_Game.h"
 #include "Sprite_Player.h"
@@ -37,17 +38,24 @@ void CScene_Game::SetSong(eSong Song)
 		break;
 	case eEnglish_Listening:
 		SinkFile.open("./Resource/English_Listening_Type_B.txt");
-		//SetSceneBGImage("./Resource/Duelle_amp_CiRRO-Your_Addiction_Culture_Code_Remix.jpg");
+		//SetSceneBGImage("Duelle_amp_CiRRO-Your_Addiction_Culture_Code_Remix.jpg");
 		break;
 	case eCircles:
 		SinkFile.open("./Resource/KDrew - Circles (Original Mix).txt");
-		//SetSceneBGImage("./Resource/Duelle_amp_CiRRO-Your_Addiction_Culture_Code_Remix.jpg");
+		//SetSceneBGImage("Duelle_amp_CiRRO-Your_Addiction_Culture_Code_Remix.jpg");
 		break;
 	default:
 		break;
 	}
 
-	SetSceneBGImage("./Resource/Duelle_amp_CiRRO-Your_Addiction_Culture_Code_Remix.jpg");
+	//SetSceneBGImage("Duelle_amp_CiRRO-Your_Addiction_Culture_Code_Remix.jpg");
+	if (SceneBGImage != nullptr)
+	{
+		SDL_FreeSurface(SceneBGImage);
+	}
+	SceneBGImage = IMG_Load_RW(g_ResourceManager->LoadItem("Duelle_amp_CiRRO-Your_Addiction_Culture_Code_Remix.jpg"), 0);
+	SceneBGTexture = SDL_CreateTextureFromSurface(g_DrawManager->pRenderer, SceneBGImage);
+	SDL_FreeSurface(SceneBGImage);
 }
 
 
@@ -109,8 +117,6 @@ void CScene_Game::Init()
 
 	g_TextManager->CreateText(strScore[0], &ScoreBox[0]);
 	g_TextManager->CreateText(strScore[1], &ScoreBox[1]);
-
-	
 }
 
 

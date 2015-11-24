@@ -8,7 +8,7 @@
 
 CSprite_Bar::CSprite_Bar() : CSprite("Bar", 400, 30, 0, 0, 400, 30)
 {
-	SetSpriteImage("./Resource/Bar.png");
+	SetSpriteImage("Bar.png");
 	SetSpriteRect(400, 30);
 
 }
