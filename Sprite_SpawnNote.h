@@ -7,5 +7,8 @@ public:
 	~CSprite_SpawnNote();
 
 	virtual void Update() override;
+	virtual void Render();
+
+	void RandColor();
 };
 

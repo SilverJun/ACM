@@ -15,10 +15,10 @@ CScene_Score::CScene_Score() : CScene(sScore)
 
 	ScoreFile.close();
 
-	ScoreBox[0] = { 300, 120, 0, 60 };
-	ScoreBox[1] = { 100, 200, 0, 40 };
-	ScoreBox[2] = { 100, 300, 0, 50 };
-	ScoreBox[3] = { 20, 20, 0, 50 };
+	ScoreBox[0] = { 550, 220, 0, 60 };
+	ScoreBox[1] = { 200, 450, 0, 40 };
+	ScoreBox[2] = { 450, 500, 0, 50 };
+	ScoreBox[3] = { 100, 100, 0, 50 };
 }
 
 
@@ -49,8 +49,9 @@ void CScene_Score::Init()
 
 void CScene_Score::Update()
 {
-	if (g_EventManager->g_Event.button.button == SDL_BUTTON_LEFT)
+	if (g_EventManager->bMBtnDown)
 	{
+		g_EventManager->bMBtnDown = false;
 		if (g_EventManager->CheckCollition_by_mouse(ScoreBox[3]))
 		{
 			g_SceneManager->SetScene(sMainMenu);

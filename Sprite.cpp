@@ -25,7 +25,7 @@ CSprite::CSprite(char *nName, int w, int h, int mx, int my, int mw, int mh)
 
 	rotation = 0;
 	flip = SDL_FLIP_NONE;
-	center.x = SpriteRect.x / 2, center.y = SpriteRect.y / 2;
+	center.x = SpriteRect.w / 2, center.y = SpriteRect.h / 2;
 
 	SpriteDir = cUNKNOWN;
 }
@@ -44,6 +44,8 @@ void CSprite::SetSpriteImage(char * filepath)
 	SpriteTexture = SDL_CreateTextureFromSurface(g_DrawManager->pRenderer, SpriteImage);
 
 	SDL_FreeSurface(SpriteImage);
+	
+	SpriteImage = nullptr;
 }
 
 
@@ -143,6 +145,9 @@ SpriteDirection CSprite::GetSpriteDirection()
 	return SpriteDir;
 }
 
-
+void CSprite::Render()
+{
+	SDL_RenderCopyEx(g_DrawManager->pRenderer, this->GetSpriteTexture(), NULL, this->GetSpriteRect(), this->GetSpriteRotation(), this->GetSpriteCenter(), *this->GetSpriteFlip());
+}
 
 

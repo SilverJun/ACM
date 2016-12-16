@@ -6,15 +6,15 @@
 
 CScene_MusicSelect::CScene_MusicSelect() : CScene(sMusicSelect)
 {
-	MenuBox[PlayList] = { 100, 100, 0, 50 };
-	MenuBox[music1] = { 100, 300, 0, 50 };
-	MenuBox[music2] = { 100, 200, 0, 50 };
-	MenuBox[music3] = { 100, 400, 0, 50 };
+	MenuBox[PlayList] = { 550, 200, 0, 50 };
+	MenuBox[music1] = { 250, 350, 0, 50 };
+	MenuBox[music2] = { 210, 450, 0, 50 };
+	MenuBox[music3] = { 250, 550, 0, 50 };
 
 	strcpy(MenuString[PlayList], "PlayList");
-	strcpy(MenuString[music2], "Æ©Åä¸®¾ó-¿µ¾î µè±â BÇü ¸®¹Í½º");
+	strcpy(MenuString[music2], "     Æ©Åä¸®¾ó-¿µ¾î µè±â BÇü ¸®¹Í½º");
 	strcpy(MenuString[music1], "Your_Addiction_Culture_Code_Remix");
-	strcpy(MenuString[music3], "KDrew - Circles (Original Mix)");
+	strcpy(MenuString[music3], "  KDrew - Circles (Original Mix)");
 
 	MenuBox[PlayList].w = (strlen(MenuString[PlayList]) - 1) * 25;
 	MenuBox[music1].w = (strlen(MenuString[music1]) - 1) * 25;
@@ -40,8 +40,9 @@ void CScene_MusicSelect::Init()
 
 void CScene_MusicSelect::Update()
 {
-	if (g_EventManager->g_Event.button.button == SDL_BUTTON_LEFT)
+	if (g_EventManager->bMBtnDown)
 	{
+		g_EventManager->bMBtnDown = false;
 		if (g_EventManager->CheckCollition_by_mouse(MenuBox[music1]))
 		{
 			g_SceneManager->SetParam(eYour_Addiction);

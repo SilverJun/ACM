@@ -9,8 +9,9 @@
 #include "Sprite_Player.h"
 #include "Sprite_SpawnNote.h"
 #include "Sprite_Bar.h"
+#include "Sprite_DecoCircle.h"
 
-enum {eSpawnNote, ePlayer, eBar};
+enum {eSpawnNote, ePlayer, eBar, eDeco1, eDeco2, eDeco3};
 
 
 CScene_Game::CScene_Game() : CScene(sThisScene)
@@ -37,7 +38,7 @@ void CScene_Game::SetSong(eSong Song)
 		break;
 	case eEnglish_Listening:
 		SinkFile.open("./Resource/English_Listening_Type_B.txt");
-		//SetSceneBGImage("./Resource/Duelle_amp_CiRRO-Your_Addiction_Culture_Code_Remix.jpg");
+		SetSceneBGImage("./Resource/English_Listening_Type_B.jpg");
 		break;
 	case eCircles:
 		SinkFile.open("./Resource/KDrew - Circles (Original Mix).txt");
@@ -48,6 +49,7 @@ void CScene_Game::SetSong(eSong Song)
 	}
 
 	SetSceneBGImage("./Resource/Duelle_amp_CiRRO-Your_Addiction_Culture_Code_Remix.jpg");
+	
 }
 
 
@@ -57,6 +59,12 @@ void CScene_Game::Init()
 	vSprite[eSpawnNote]->Update();
 	addSprite(new CSprite_Player());
 	addSprite(new CSprite_Bar());
+
+	addSprite(new CSprite_DecoCircle(1,150,150));
+	addSprite(new CSprite_DecoCircle(-2,300,300));
+	addSprite(new CSprite_DecoCircle(3,450,450));
+
+
 	SDL_ShowCursor(0);
 
 	g_SoundManager->DestroySound(eEffectMusic);
@@ -67,6 +75,8 @@ void CScene_Game::Init()
 	unsigned int time;
 	g_SoundManager->SongMap[eGameTheme]->getLength(&time, FMOD_TIMEUNIT_MS);
 	GameEndTime = time;
+
+	IntervalTime = 0;
 
 	ScoreTime = 100;
 	xScoreTime = 1000;
@@ -105,7 +115,7 @@ void CScene_Game::Init()
 	ScoreBox[0].w = (strlen(strScore[0]) - 1) * 25;
 	ScoreBox[1].w = (strlen(strScore[1]) - 1) * 25;
 
-	g_TextManager->SetColor(255, 255, 255);
+	//g_TextManager->SetColor(255, 255, 255);
 
 	g_TextManager->CreateText(strScore[0], &ScoreBox[0]);
 	g_TextManager->CreateText(strScore[1], &ScoreBox[1]);
@@ -168,9 +178,13 @@ void CScene_Game::Update()
 	vSprite[eSpawnNote]->Update();
 	vSprite[ePlayer]->Update();
 
-	
+	vSprite[eDeco1]->Update();
+	vSprite[eDeco2]->Update();
+	vSprite[eDeco3]->Update();
+
 	if (CurTime > SinkTime)		//노트가 나와야 하는 타이밍
 	{
+		static_cast<CSprite_SpawnNote *>(vSprite[eSpawnNote])->RandColor();
 		switch (NoteType)
 		{
 		case note_Normal:
@@ -328,13 +342,10 @@ void CScene_Game::Update()
 		}
 		xScoreTime += 1000;
 	}
+	g_SoundManager->pChannel[eChannel1]->isPlaying(&bIsGameEnd);
 
-	if (CurTime >= GameEndTime)
-	{
-		bIsGameEnd = true;
-	}
 
-	if (vNote.size() == 0 && bIsGameEnd)
+	if (vNote.size() == 0 && !bIsGameEnd)
 	{
 		ScoreFile.open("./Data/Score.txt",ios::app);
 		ScoreFile << " " << Score;
@@ -349,15 +360,18 @@ void CScene_Game::Render()
 	SDL_Rect temprt;
 	int x1, x2, x3, x4;
 	int y1, y2, y3, y4;
-
 	
 	SDL_RenderCopy(g_DrawManager->pRenderer, SceneBGTexture, NULL, &SceneBGRect);
+
+	vSprite[eDeco1]->Render();
+	vSprite[eDeco2]->Render();
+	vSprite[eDeco3]->Render();
 
 	for (int i = 0; i < vNote.size(); i++)			//노트들 업데이트
 	{
 		if (vNote[i] != nullptr)
 		{
-			SDL_RenderCopyEx(g_DrawManager->pRenderer, vNote[i]->GetSpriteTexture(), NULL, vNote[i]->GetSpriteRect(), vNote[i]->GetSpriteRotation(), vNote[i]->GetSpriteCenter(), *vNote[i]->GetSpriteFlip());
+			vNote[i]->Render();
 #ifdef _DEBUG
 			SDL_SetRenderDrawColor(g_DrawManager->pRenderer, 255, 0, 0, 255);
 			temprt = *vNote[i]->GetSpriteRect();
@@ -377,11 +391,11 @@ void CScene_Game::Render()
 		}
 	}
 
-	for (int i = 0; i != nSprite; i++)
+	for (int i = 0; i != 3; i++)
 	{
 		if (vSprite[i] != nullptr)
 		{
-			SDL_RenderCopyEx(g_DrawManager->pRenderer, vSprite[i]->GetSpriteTexture(), NULL, vSprite[i]->GetSpriteRect(), vSprite[i]->GetSpriteRotation(), vSprite[i]->GetSpriteCenter(), *vSprite[i]->GetSpriteFlip());
+			vSprite[i]->Render();
 #ifdef _DEBUG
 			temprt = *vSprite[ePlayer]->GetSpriteMask();
 
@@ -403,18 +417,17 @@ void CScene_Game::Render()
 
 void CScene_Game::Release()
 {
-	g_TextManager->SetColor(0, 0, 0);
-
 	g_SoundManager->StopSound(eChannel1);
 	g_SoundManager->DestroySound(eGameTheme);
 	g_TextManager->DestroyTextAll();
 	ScoreFile.close();
 	SinkFile.close();
 
-	/*for (int i = 0; i < vSprite.size(); i++)
+	for (int i = vSprite.size() - 1; i >= 0; i--)
 	{
 		delete vSprite[i];
-	}*/
+		vSprite.pop_back();
+	}
 	
 	SDL_ShowCursor(1);
 }

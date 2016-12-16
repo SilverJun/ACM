@@ -16,6 +16,9 @@ void CDirector::Init()
 	g_DrawManager->Init();
 	//g_TimeManager->Init();
 	
+
+	
+
 }
 
 

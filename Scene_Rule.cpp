@@ -10,12 +10,12 @@
 
 CScene_Rule::CScene_Rule() : CScene(sRule)
 {
-	RuleBox[0] = { 300, 120, 0, 60 };
-	RuleBox[1] = { 100, 200, 0, 40 };
-	RuleBox[2] = { 400, 300, 0, 40 };
-	RuleBox[3] = { 500, 400, 0, 40 };
-	RuleBox[4] = { 300, 600, 0, 40 };
-	RuleBox[5] = { 20, 20, 0, 50 };
+	RuleBox[0] = { 465, 220, 0, 60 };
+	RuleBox[1] = { 500, 400, 0, 40 };
+	RuleBox[2] = { 490, 450, 0, 40 };
+	RuleBox[3] = { 540, 500, 0, 40 };
+	RuleBox[4] = { 410, 550, 0, 40 };
+	RuleBox[5] = { 100, 100, 0, 50 };
 }
 
 
@@ -51,8 +51,9 @@ void CScene_Rule::Init()
 
 void CScene_Rule::Update()
 {
-	if (g_EventManager->g_Event.button.button == SDL_BUTTON_LEFT)
+	if (g_EventManager->bMBtnDown)
 	{
+		g_EventManager->bMBtnDown = false;
 		if (g_EventManager->CheckCollition_by_mouse(RuleBox[5]))
 		{
 			g_SceneManager->SetScene(sMainMenu);

@@ -26,17 +26,20 @@ CSprite_Note::CSprite_Note(eNote type, float Rotation, float Rotation_Rate, int 
 		SetSpriteCenter(39, 39);
 		SpriteRect = { 0, 0, 39, 39 };
 		break;
+
 	case note_Spiral_Left:
 	case note_Spiral_Right:
 		SpriteTexture = SDL_CreateTextureFromSurface(g_DrawManager->pRenderer, g_DrawManager->SpiralNoteSurface);
 		SetSpriteCenter(44, 44);
 		SpriteRect = { 0, 0, 44, 44 };
 		break;
+
 	case note_Random:
 		SpriteTexture = SDL_CreateTextureFromSurface(g_DrawManager->pRenderer, g_DrawManager->Note[NoteColor]);
 		SetSpriteCenter(20, 20);
 		SpriteRect = { 0, 0, 20, 20 };
 		break;
+
 	default:
 		break;
 	}

@@ -13,8 +13,8 @@ public:
 	virtual void Release() override;
 
 private:
-	SDL_Rect CreditBox[5];
-	char CreditString[5][100];
+	SDL_Rect CreditBox[6];
+	char CreditString[6][100];
 
 	//SDL_Rect 
 };

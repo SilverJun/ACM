@@ -15,6 +15,7 @@ CDrawManager::CDrawManager(void)
 	pWindow = SDL_CreateWindow("SJEngine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_DEFAULT_W, WINDOW_DEFAULT_H, SDL_WINDOW_FULLSCREEN);
 #endif // _DEBUG
 	
+	SDL_SetWindowIcon(pWindow, IMG_Load("./Resource/icon.png"));
 
 	pRenderer = SDL_CreateRenderer(pWindow, -1, 0);
 

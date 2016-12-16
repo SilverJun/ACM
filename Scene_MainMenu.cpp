@@ -10,16 +10,18 @@
 CScene_MainMenu::CScene_MainMenu() : CScene(sMainMenu)
 {
 	SetSceneBGImage("./Resource/ACM.png");
+	MenuImg = IMG_Load("./Resource/Menu.png");
+	MenuTxt = SDL_CreateTextureFromSurface(g_DrawManager->pRenderer, MenuImg);
 
-	MenuBox[Start]	= { 100, 650, 0, 50 };
-	MenuBox[Rule]	= { 0, 650, 0, 50 };
-	MenuBox[Score] = { 0, 650, 0, 50 };
-	MenuBox[Credit] = { 0, 650, 0, 50 };
-	MenuBox[Exit]	= { 0, 650, 0, 50 };
+	MenuBox[Start]	= { 100, 600, 0, 50 };
+	MenuBox[Rule]	= { 320, 600, 0, 50 };
+	MenuBox[Score] = { 560, 600, 0, 50 };
+	MenuBox[Credit] = { 750, 600, 0, 50 };
+	MenuBox[Exit]	= { 920, 600, 0, 50 };
 
 	strcpy(MenuString[Start], "게임시작");
 	strcpy(MenuString[Rule],	 "게임규칙");
-	strcpy(MenuString[Score], "점수");
+	strcpy(MenuString[Score], "점  수");
 	strcpy(MenuString[Credit], "제작자");
 	strcpy(MenuString[Exit], "게임종료");
 
@@ -29,18 +31,13 @@ CScene_MainMenu::CScene_MainMenu() : CScene(sMainMenu)
 	MenuBox[Credit].w = (strlen(MenuString[Credit]) - 1) * 25;
 	MenuBox[Exit].w = (strlen(MenuString[Exit]) - 1) * 25;
 
-	MenuBox[Rule].x = MenuBox[Start].w + MenuBox[Start].x + 30;
-	MenuBox[Score].x = MenuBox[Rule].w + MenuBox[Rule].x + 30;
-	MenuBox[Credit].x = MenuBox[Score].w + MenuBox[Score].x + 30;
-	MenuBox[Exit].x = MenuBox[Credit].w + MenuBox[Credit].x + 30;
-
+	
 }
 
 
 CScene_MainMenu::~CScene_MainMenu()
 {
 	Release();
-
 }
 
 
@@ -59,46 +56,66 @@ void CScene_MainMenu::Init()
 		g_SoundManager->MakeSound(eMainMenuSound, eMainMenu);
 		g_SoundManager->PlaySound(eBGMChannel, eMainMenuSound);
 	}
-
+	
+	if (g_SoundManager->SongMap.find(eEffectMusic) != g_SoundManager->SongMap.end())
+	{
+		g_SoundManager->DestroySound(eEffectMusic);
+	}
 	g_SoundManager->MakeSound(eEffectMusic, eEffect_Click);
 }
 
 
 void CScene_MainMenu::Update()
 {
-	if (g_EventManager->g_Event.button.button == SDL_BUTTON_LEFT)
+	if (g_EventManager->bMBtnDown)
 	{
-		g_SoundManager->PlaySound(eChannel2, eEffectMusic);
+		g_EventManager->bMBtnDown = false;
 		if (g_EventManager->CheckCollition_by_mouse(MenuBox[Start]))
 		{
+			g_SoundManager->PlaySound(eChannel2, eEffectMusic);
 			g_SoundManager->pChannel[eBGMChannel]->stop();
 			g_SoundManager->DestroySound(eMainMenuSound);
 			g_SceneManager->SetScene(sMusicSelect);
-			
 		}
 		else if (g_EventManager->CheckCollition_by_mouse(MenuBox[Rule]))
 		{
+			g_SoundManager->PlaySound(eChannel2, eEffectMusic);
 			g_SceneManager->SetScene(sRule);
 		} 
 		else if (g_EventManager->CheckCollition_by_mouse(MenuBox[Score]))
 		{
+			g_SoundManager->PlaySound(eChannel2, eEffectMusic);
 			g_SceneManager->SetScene(sScore);
 		}
 		else if (g_EventManager->CheckCollition_by_mouse(MenuBox[Credit]))
 		{
+			g_SoundManager->PlaySound(eChannel2, eEffectMusic);
 			g_SceneManager->SetScene(sCredit);
 		}
 		else if (g_EventManager->CheckCollition_by_mouse(MenuBox[Exit]))
 		{
+			g_SoundManager->PlaySound(eChannel2, eEffectMusic);
 			g_Director->GameDone = true;
 		}
 	}
 }
 
+void CScene_MainMenu::Render()
+{
+	SDL_RenderCopy(g_DrawManager->pRenderer, SceneBGTexture, NULL, &SceneBGRect);
+
+	for (int i = 0; i < 5; i++)
+	{
+		SDL_RenderCopy(g_DrawManager->pRenderer, MenuTxt, NULL, &MenuBox[i]);
+	}
+}
+
 void CScene_MainMenu::Release()
 {
-	
 	//g_SoundManager->DestroySound(eMainMenuSound);
+	SDL_FreeSurface(MenuImg);
+	SDL_DestroyTexture(MenuTxt);
+
 	g_TextManager->DestroyTextAll();
 }
 

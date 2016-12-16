@@ -20,7 +20,7 @@ CScene_GameEnd::CScene_GameEnd() : CScene(sGameEnd)
 	ScoreBox[1] = { 100, 200, 0, 50 };
 	ScoreBox[2] = { 100, 300, 0, 50 };
 	ScoreBox[3] = { 100, 400, 0, 50 };
-	ScoreBox[4] = { 20, 20, 0, 50 };
+	ScoreBox[4] = { 100, 100, 0, 50 };
 
 }
 
@@ -69,8 +69,9 @@ void CScene_GameEnd::Init()
 
 void CScene_GameEnd::Update()
 {
-	if (g_EventManager->g_Event.button.button == SDL_BUTTON_LEFT)
+	if (g_EventManager->bMBtnDown)
 	{
+		g_EventManager->bMBtnDown = false;
 		if (g_EventManager->CheckCollition_by_mouse(ScoreBox[4]))
 		{
 			g_SceneManager->SetScene(sMainMenu);

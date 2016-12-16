@@ -9,6 +9,7 @@ CEventManager::CEventManager()
 {
 	nKey = 9;
 	InitKeyProsess();
+	bMBtnDown = false;
 }
 
 
@@ -42,63 +43,11 @@ void CEventManager::Update()
 		case SDLK_ESCAPE:
 			exit(0);
 			break;
-
-		//case SDLK_1:
-		//	KeyProsess[n1] = true;
-		//	break;
-		//
-		//case SDLK_2:
-		//	KeyProsess[n2] = true;
-		//	break;
-		//
-		//case SDLK_3:
-		//	KeyProsess[n3] = true;
-		//	break;
-		//
-		//case SDLK_4:
-		//	KeyProsess[n4] = true;
-		//	break;
-		//
-		//default:
-		//	break;
 		}
-		//if (g_EventKey == SDLK_UP)
-		//{
-		//	KeyProsess[Up] = true;
-		//}
-		//if (g_EventKey == SDLK_DOWN)
-		//{
-		//	KeyProsess[Down] = true;
-		//}
-		//if (g_EventKey == SDLK_LEFT)
-		//{
-		//	KeyProsess[Left] = true;
-		//}
-		//if (g_EventKey == SDLK_RIGHT)
-		//{
-		//	KeyProsess[Right] = true;
-		//}
 		if (g_EventKey == SDLK_SPACE)
 		{
 			KeyProsess[Space] = true;
 		}
-
-		//if (keystate[SDL_SCANCODE_LEFT])
-		//{
-		//	KeyProsess[Left] = true;
-		//}
-		//if (keystate[SDL_SCANCODE_RIGHT])
-		//{
-		//	KeyProsess[Right] = true;
-		//}
-		//if (keystate[SDL_SCANCODE_UP])
-		//{
-		//	KeyProsess[Up] = true;
-		//}
-		//if (keystate[SDL_SCANCODE_DOWN])
-		//{
-		//	KeyProsess[Down] = true;
-		//}
 	}
 	else if (g_Event.type == SDL_QUIT)
 	{
@@ -108,6 +57,17 @@ void CEventManager::Update()
 	{
 		InitKeyProsess();
 	}
+
+
+	if (g_Event.type == SDL_MOUSEBUTTONDOWN)
+	{
+		bMBtnDown = true;
+	}
+	else if (g_Event.type == SDL_MOUSEBUTTONUP)
+	{
+		bMBtnDown = false;
+	}
+	
 	//SDL_FlushEvents(1073741881, 1073742106);
 }
 

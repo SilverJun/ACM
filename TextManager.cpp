@@ -33,7 +33,7 @@ void CTextManager::Init()
 	TTF_Init();
 
 	pTTF_Font = nullptr;
-	point = 20;
+	point = 100;
 
 	
 
@@ -196,7 +196,9 @@ void CTextManager::DestroyTextAll()
 		if (pTTF_Surface[i] != nullptr)
 		{
 			SDL_FreeSurface(pTTF_Surface[i]);
+			SDL_DestroyTexture(pTTF_Texture[i]);
 			pTTF_Surface[i] = nullptr;
+			pTTF_Texture[i] = nullptr;
 			string_han_idx_table[i] = false;
 		}
 		memset(string_han[i], 0, 256);

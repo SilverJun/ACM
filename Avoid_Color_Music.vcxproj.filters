@@ -34,6 +34,9 @@
     <Filter Include="소스 파일\ACM\Object">
       <UniqueIdentifier>{ee26d903-09d4-4802-b8de-4df3b2087ee0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\ACM\Object\Game">
+      <UniqueIdentifier>{904b87d4-0401-410d-a6bd-5ead5bce5834}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -93,15 +96,6 @@
     <ClInclude Include="Scene_Score.h">
       <Filter>소스 파일\ACM\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Sprite_Player.h">
-      <Filter>소스 파일\ACM\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Sprite_Note.h">
-      <Filter>소스 파일\ACM\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Sprite_SpawnNote.h">
-      <Filter>소스 파일\ACM\Object</Filter>
-    </ClInclude>
     <ClInclude Include="Scene_MusicSelect.h">
       <Filter>소스 파일\ACM\Scene</Filter>
     </ClInclude>
@@ -109,7 +103,19 @@
       <Filter>소스 파일\ACM\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Sprite_Bar.h">
-      <Filter>소스 파일\ACM\Object</Filter>
+      <Filter>소스 파일\ACM\Object\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite_Note.h">
+      <Filter>소스 파일\ACM\Object\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite_Player.h">
+      <Filter>소스 파일\ACM\Object\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite_SpawnNote.h">
+      <Filter>소스 파일\ACM\Object\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite_DecoCircle.h">
+      <Filter>소스 파일\ACM\Object\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -161,15 +167,6 @@
     <ClCompile Include="Scene_Score.cpp">
       <Filter>소스 파일\ACM\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Sprite_Player.cpp">
-      <Filter>소스 파일\ACM\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Sprite_Note.cpp">
-      <Filter>소스 파일\ACM\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Sprite_SpawnNote.cpp">
-      <Filter>소스 파일\ACM\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Scene_MusicSelect.cpp">
       <Filter>소스 파일\ACM\Scene</Filter>
     </ClCompile>
@@ -177,7 +174,19 @@
       <Filter>소스 파일\ACM\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Sprite_Bar.cpp">
-      <Filter>소스 파일\ACM\Object</Filter>
+      <Filter>소스 파일\ACM\Object\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite_Note.cpp">
+      <Filter>소스 파일\ACM\Object\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite_Player.cpp">
+      <Filter>소스 파일\ACM\Object\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite_SpawnNote.cpp">
+      <Filter>소스 파일\ACM\Object\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite_DecoCircle.cpp">
+      <Filter>소스 파일\ACM\Object\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

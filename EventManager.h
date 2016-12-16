@@ -12,6 +12,7 @@ public:
 	void Release();
 
 	SDL_Event g_Event;
+	bool bMBtnDown;
 
 	bool KeyProsess[9];
 	const Uint8 *keystate;
